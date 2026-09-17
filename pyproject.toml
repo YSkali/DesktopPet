@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "desktoppet"
+dynamic = ["version"]
+description = "一个可爱的桌面宠物 / A cute desktop pet that walks around your screen"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Your Name" }]
+keywords = ["desktop-pet", "tkinter", "shimeji", "desktop-companion", "python"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Win32 (MS Windows)",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Topic :: Desktop Environment",
+    "Topic :: Games/Entertainment",
+]
+dependencies = ["Pillow>=10.0.0"]
+
+[project.optional-dependencies]
+dev = ["cx_Freeze>=7.0.0", "pytest>=7.0.0"]
+# 更精确的 CPU 感知（可选）：pip install "desktoppet[awareness]"
+awareness = ["psutil>=5.9.0"]
+
+[project.urls]
+Homepage = "https://github.com/yourname/desktoppet"
+Repository = "https://github.com/yourname/desktoppet"
+Changelog = "https://github.com/yourname/desktoppet/blob/main/CHANGELOG.md"
+
+[project.scripts]
+desktoppet = "desktoppet.pet:main"
+
+[tool.setuptools.packages.find]
+include = ["desktoppet*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "desktoppet.version.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

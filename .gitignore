@@ -1,0 +1,46 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+*.egg
+build/
+dist/
+*.so
+
+# ---- 测试 / 缓存 ----
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ---- 项目生成物（可由脚本重新生成）----
+assets_processed/
+config.json
+
+# ---- 打包产物（exe 请走 GitHub Releases 分发）----
+pet.build/
+pet.dist/
+*.spec
+nuitka-crash-report.xml
+
+# ---- 虚拟环境 ----
+venv/
+.venv/
+env/
+ENV/
+
+# ---- IDE / 操作系统 ----
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ---- 运行时日志 ----
+logs/
+*.log
+
+# ---- Claude Code ----
+.claude/
