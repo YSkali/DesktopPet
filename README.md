@@ -4,10 +4,21 @@
 > A cute desktop pet that walks around your screen.
 
 <p align="center">
-  <img src="docs/images/demo.gif" alt="DesktopPet demo" width="320">
+  <img src="docs/images/demo.gif" alt="DesktopPet demo" width="480">
   <br>
-  <em>（把演示 GIF 放到 docs/images/demo.gif 即可显示）</em>
+  <em>演示：自动走动 · 拖拽 · 点击互动 · 系统感知</em>
 </p>
+
+## 📸 截图
+
+<div align="center">
+
+| 🎛️ 设置面板 | 🎭 角色包切换 | 🧠 系统感知 |
+|:---:|:---:|:---|
+| ![设置面板](docs/images/screenshot-control-panel.png) | ![角色包](docs/images/screenshot-packs.png) | ![系统感知](docs/images/screenshot-awareness.png) |
+| 页面式功能扩展 | 7 个内置 CC0 角色 | CPU / 电池 / 时段感知 |
+
+</div>
 
 <p align="center">
   <img alt="platform" src="https://img.shields.io/badge/platform-Windows-blue">
