@@ -4,19 +4,28 @@
 > A cute desktop pet that walks around your screen.
 
 <p align="center">
-  <img src="docs/images/demo.gif" alt="DesktopPet demo" width="480">
+  <img src="docs/images/1.png" alt="DesktopPet 桌宠形象" width="320">
   <br>
-  <em>演示：自动走动 · 拖拽 · 点击互动 · 系统感知</em>
+  <em>桌宠形象 · 自动走动 · 拖拽 · 点击互动</em>
 </p>
 
 ## 📸 截图
 
 <div align="center">
 
-| 🎛️ 设置面板 | 🎭 角色包切换 | 🧠 系统感知 |
+| 🖱️ 右键菜单 | 🧠 系统状态 | ℹ️ 关于桌宠 |
 |:---:|:---:|:---|
-| ![设置面板](docs/images/screenshot-control-panel.png) | ![角色包](docs/images/screenshot-packs.png) | ![系统感知](docs/images/screenshot-awareness.png) |
-| 页面式功能扩展 | 7 个内置 CC0 角色 | CPU / 电池 / 时段感知 |
+| ![右键菜单](docs/images/2.png) | ![系统状态](docs/images/3.png) | ![关于桌宠](docs/images/4.png) |
+| 呼出操作面板 | CPU / 电池 / 时段感知 | 版本 · 心情 · 亲密度 |
+
+</div>
+
+<div align="center">
+
+| 🎛️ 控制台 |
+|:---:|
+| ![控制台](docs/images/5.png) |
+| 页面式功能扩展 · 实时生效 |
 
 </div>
 
