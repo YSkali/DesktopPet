@@ -9,7 +9,7 @@ description = "一个可爱的桌面宠物 / A cute desktop pet that walks aroun
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "Your Name" }]
+authors = [{ name = "YSkali" }]
 keywords = ["desktop-pet", "tkinter", "shimeji", "desktop-companion", "python"]
 classifiers = [
     "Development Status :: 4 - Beta",
