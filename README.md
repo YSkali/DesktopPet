@@ -4,7 +4,7 @@
 > A cute desktop pet that walks around your screen.
 
 <p align="center">
-  <img src="docs/images/1.png" alt="DesktopPet 桌宠形象" width="320">
+  <img src="https://raw.githubusercontent.com/YSkali/DesktopPet/main/docs/images/1.png" alt="DesktopPet 桌宠形象" width="320">
   <br>
   <em>桌宠形象 · 自动走动 · 拖拽 · 点击互动</em>
 </p>
@@ -15,7 +15,7 @@
 
 | 🖱️ 右键菜单 | 🧠 系统状态 | ℹ️ 关于桌宠 |
 |:---:|:---:|:---|
-| ![右键菜单](docs/images/2.png) | ![系统状态](docs/images/3.png) | ![关于桌宠](docs/images/4.png) |
+| ![右键菜单](https://raw.githubusercontent.com/YSkali/DesktopPet/main/docs/images/2.png) | ![系统状态](https://raw.githubusercontent.com/YSkali/DesktopPet/main/docs/images/3.png) | ![关于桌宠](https://raw.githubusercontent.com/YSkali/DesktopPet/main/docs/images/4.png) |
 | 呼出操作面板 | CPU / 电池 / 时段感知 | 版本 · 心情 · 亲密度 |
 
 </div>
@@ -24,7 +24,7 @@
 
 | 🎛️ 控制台 |
 |:---:|
-| ![控制台](docs/images/5.png) |
+| ![控制台](https://raw.githubusercontent.com/YSkali/DesktopPet/main/docs/images/5.png) |
 | 页面式功能扩展 · 实时生效 |
 
 </div>
