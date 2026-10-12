@@ -1,5 +1,5 @@
 === SOURCE 1: Aptoide API ===
-aptoide resp head: {"info":{"status":"FAIL","time":{"seconds":0.015882015228271484,"human":"16 milliseconds"}},"errors":[{"code":"APP-1","description":"Application 'package:com.github.android' not found","details":{}}]}
+aptoide resp head: {"info":{"status":"FAIL","time":{"seconds":0.0194399356842041,"human":"19 milliseconds"}},"errors":[{"code":"APP-1","description":"Application 'package:com.github.android' not found","details":{}}]}
 aptoide url: 
 === SOURCE 2: APKPure CDN ===
 --- trying apkpure: https://d.apkpure.com/b/APK/com.github.android?version=latest
@@ -34,13 +34,27 @@ attempt 1: size=156611
    dlref: https://dragon-city.en.uptodown.com/android
 /download page size: 37506
    dl2 data-url: data-url="apps"
+-- uto2 head: <!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" /><title>Uptodown 404</title><link rel="preconnect" href="https://img.utdstc.com"><link rel="p
+-- dw.uptodown refs in uto2:
+-- 'dwn' contexts in uto2:
+-- install/dl url vars in uto2:
+-- ajax /download resp head: <html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+ajax url: 
 extracted direct: 
-=== SOURCE 7: APKSum ===
-page size: 5620 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-e
-extracted: 
+=== SOURCE 7: Chinese stores ===
+  https://sj.qq.com/appdetail/com.github.android -> 404:98971 title: 
+  https://app.mi.com/details?id=com.github.android -> 200:85688 title: <title>手机游戏应用商店_软件商店app下载-小米应用商店
+  https://shouji.baidu.com/detail?appname=com.github.android -> 200:8894 title: <title>百度手机助手_安卓应用下载安装_有颜又有货的应用商�
+  https://www.wandoujia.com/search?key=github -> 000:0 title: <title>百度手机助手_安卓应用下载安装_有颜又有货的应用商�
 === SOURCE 8: apksos ===
-page size: 56996 head: <!doctype html><html lang="ru-RU"	prefix="og: https://ogp.me/ns#" ><head>	<meta charset="UTF-8">	<meta name="viewport" content="width=device-widt
-extracted: 
+page size: 56996
+title: <title>Страница не найдена &#8212; Электронные гаджеты
 === SOURCE 6: APKFab ===
 page size: 5646 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta nam
 extracted: 
