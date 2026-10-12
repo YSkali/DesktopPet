@@ -1,18 +1,23 @@
 === SOURCE 1: Aptoide API ===
-aptoide resp head: {"info":{"status":"FAIL","time":{"seconds":0.01680898666381836,"human":"17 milliseconds"}},"errors":[{"code":"APP-1","description":"Application 'package:com.github.android' not found","details":{}}]}
+aptoide resp head: {"info":{"status":"FAIL","time":{"seconds":0.01076197624206543,"human":"11 milliseconds"}},"errors":[{"code":"APP-1","description":"Application 'package:com.github.android' not found","details":{}}]}
 aptoide url: 
 === SOURCE 2: APKPure CDN ===
 --- trying apkpure: https://d.apkpure.com/b/APK/com.github.android?version=latest
     http=403 magic=<! size=5771
 === SOURCE 3: APKPure page ===
-page size: 5695 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta nam
+page size: 5717 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta nam
 extracted: 
 === SOURCE 4: APKCombo ===
 page size: 0 head: 
 extracted: 
 === SOURCE 5: Uptodown ===
-page size: 156664 head: <!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" /><title>Download GitHub 1.280.0 for Android |
-extracted: 
+page size: 114
+--- uptodown deep dive ---
+-- xapk/apk refs:
+-- data-url attrs:
+-- download-ish anchors:
+-- dl.uptodown refs:
+extracted direct: 
 === SOURCE 6: APKFab ===
 page size: 5646 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta nam
 extracted: 
