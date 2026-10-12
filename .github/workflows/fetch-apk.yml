@@ -100,9 +100,18 @@ jobs:
             dbg "=== SOURCE 5: Uptodown ==="
             curl -sL -A "$UA" --max-time 60 \
               "https://github-android.en.uptodown.com/android/download" -o /tmp/uto.html
-            dbg "page size: $(stat -c%s /tmp/uto.html 2>/dev/null || echo 0) head: $(head -c 200 /tmp/uto.html | tr -d '\n')"
+            dbg "page size: $(stat -c%s /tmp/uto.html 2>/dev/null || echo 0)"
+            dbg "--- uptodown deep dive ---"
+            dbg "-- xapk/apk refs:"
+            grep -oE '"[^"]*\.(x?apk)[^"]*"' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "   $l"; done
+            dbg "-- data-url attrs:"
+            grep -oE 'data-url="[^"]+"' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "   $l"; done
+            dbg "-- download-ish anchors:"
+            grep -oE '<a[^>]+(download|dl)[^>]*>' /tmp/uto.html | head -10 | while read -r l; do dbg "   $(echo "$l" | head -c 300)"; done
+            dbg "-- dl.uptodown refs:"
+            grep -oE '(https:)?//[a-z0-9.-]*uptodown[^"'"'"' ]*(dl|download)[^"'"'"' ]*' /tmp/uto.html | sort -u | head -15 | while read -r l; do dbg "   $l"; done
             uto_url=$(grep -oE 'https://[^"]+uptodown[^"]*\.x?apk[^"]*' /tmp/uto.html | head -1)
-            dbg "extracted: $uto_url"
+            dbg "extracted direct: $uto_url"
             [ -n "$uto_url" ] && try_download uptodown "$uto_url"
           fi
 
@@ -124,18 +133,18 @@ jobs:
         if: always() && steps.decide.outputs.mode == 'fetch'
         run: |
           set +e
-          gh release delete apk-tmp --yes --cleanup-tag 2>/dev/null
+          gh release delete apk-tmp --repo YSkali/DesktopPet --yes --cleanup-tag 2>/dev/null
           if ls GitHub-Android-*.apk >/dev/null 2>&1; then
             f=$(ls GitHub-Android-*.apk)
-            gh release create apk-tmp "$f" \
+            gh release create apk-tmp --repo YSkali/DesktopPet "$f" \
               --title "GitHub for Android APK (temp)" \
               --notes "Auto-fetched installer for personal use. Safe to delete."
           elif [ -f DIAGNOSTICS.txt ]; then
-            gh release create apk-tmp DIAGNOSTICS.txt \
+            gh release create apk-tmp --repo YSkali/DesktopPet DIAGNOSTICS.txt \
               --title "Fetch FAILED - diagnostics" \
               --notes "All mirrors failed; diagnostics attached."
           else
-            gh release create apk-tmp --title "EMPTY" --notes "no diag produced"
+            gh release create apk-tmp --repo YSkali/DesktopPet --title "EMPTY" --notes "no diag produced"
           fi
 
       - name: Push diag file to repo
@@ -157,7 +166,7 @@ jobs:
         if: steps.decide.outputs.mode == 'cleanup'
         run: |
           set +e
-          gh release delete apk-tmp --yes --cleanup-tag 2>/dev/null
+          gh release delete apk-tmp --repo YSkali/DesktopPet --yes --cleanup-tag 2>/dev/null
           sha=$(gh api /repos/YSkali/DesktopPet/contents/diag-report.txt --jq .sha 2>/dev/null)
           if [ -n "$sha" ]; then
             gh api -X DELETE /repos/YSkali/DesktopPet/contents/diag-report.txt \
