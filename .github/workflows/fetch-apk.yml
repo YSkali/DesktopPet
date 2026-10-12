@@ -107,9 +107,10 @@ jobs:
             dbg "ALL SOURCES FAILED"
             cp diag.txt DIAGNOSTICS.txt
           fi
+          exit 0
 
       - name: Create release (APK or diagnostics)
-        if: steps.decide.outputs.mode == 'fetch'
+        if: always() && steps.decide.outputs.mode == 'fetch'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
