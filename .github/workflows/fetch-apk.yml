@@ -26,55 +26,105 @@ jobs:
       - name: Download APK from mirrors
         if: steps.decide.outputs.mode == 'fetch'
         run: |
-          set -x
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
           ok=0
+          : > diag.txt
 
-          # Source 1: APKPure CDN (plain APK)
-          if curl -fL -A "$UA" --retry 2 --max-time 300 -o github.apk \
-               "https://d.apkpure.com/b/APK/com.github.android?version=latest"; then
-            if [ "$(head -c 2 github.apk)" = "PK" ] && [ "$(stat -c%s github.apk)" -gt 15000000 ]; then ok=1; src="apkpure"; fi
+          dbg() { echo "$@" | tee -a diag.txt; }
+
+          # ---- Source 1: Aptoide public API ----
+          dbg "=== SOURCE 1: Aptoide API ==="
+          apt_json=$(curl -sL -A "$UA" --max-time 60 "https://ws75.aptoide.com/api/7/app/get/package_name=com.github.android")
+          dbg "aptoide resp head: $(echo "$apt_json" | head -c 400)"
+          apt_url=$(echo "$apt_json" | python3 -c "import json,sys
+          try:
+            d=json.load(sys.stdin)
+            n=d.get('nodes',{}).get('meta',{}).get('data',{})
+            print(n.get('file',{}).get('path',''))
+          except Exception as e:
+            print('')" 2>/dev/null)
+          apt_ver=$(echo "$apt_json" | python3 -c "import json,sys
+          try:
+            d=json.load(sys.stdin)
+            n=d.get('nodes',{}).get('meta',{}).get('data',{})
+            print(n.get('name',''), n.get('file',{}).get('vername',''))
+          except Exception:
+            print('')")
+          dbg "aptoide url: $apt_url"
+          dbg "aptoide ver: $apt_ver"
+          if [ -n "$apt_url" ] && curl -fL -A "$UA" --max-time 300 -o github.apk "$apt_url"; then
+            magic=$(head -c 2 github.apk)
+            size=$(stat -c%s github.apk 2>/dev/null || echo 0)
+            dbg "aptoide file: magic=$magic size=$size"
+            if [ "$magic" = "PK" ] && [ "$size" -gt 10000000 ]; then ok=1; src="aptoide"; fi
+          else
+            dbg "aptoide download failed: $?"
           fi
 
-          # Source 2: APKCombo download-apk page (base APK)
+          # ---- Source 2: APKPure page + CDN ----
           if [ "$ok" != "1" ]; then
+            dbg "=== SOURCE 2: APKPure ==="
             rm -f github.apk
-            url=$(curl -sL -A "$UA" "https://apkcombo.com/github/com.github.android/download-apk" \
-                  | grep -oE 'https://[^"]+\.apk[^"]*' | grep -v icon | head -1)
-            echo "apkcombo url: $url"
-            if [ -n "$url" ] && curl -fL -A "$UA" --max-time 300 -o github.apk "$url" \
-               && [ "$(head -c 2 github.apk)" = "PK" ] && [ "$(stat -c%s github.apk)" -gt 15000000 ]; then
-              ok=1; src="apkcombo"
+            curl -sL -A "$UA" -c /tmp/apk.ck -b /tmp/apk.ck --max-time 60 \
+              "https://apkpure.net/github/com.github.android/download" -o /tmp/apkpure.html
+            dbg "apkpure page size: $(stat -c%s /tmp/apkpure.html 2>/dev/null || echo 0)"
+            dbg "apkpure page head: $(head -c 300 /tmp/apkpure.html | tr -d '\n')"
+            pure_url=$(grep -oE 'https://d\.apkpure\.com/[^"'"'"' ]+' /tmp/apkpure.html | head -1)
+            dbg "apkpure extracted url: $pure_url"
+            [ -z "$pure_url" ] && pure_url="https://d.apkpure.com/b/APK/com.github.android?version=latest"
+            if curl -fL -A "$UA" -c /tmp/apk.ck -b /tmp/apk.ck --max-time 300 -o github.apk "$pure_url"; then
+              magic=$(head -c 2 github.apk); size=$(stat -c%s github.apk 2>/dev/null || echo 0)
+              dbg "apkpure file: magic=$magic size=$size"
+              if [ "$magic" = "PK" ] && [ "$size" -gt 10000000 ]; then ok=1; src="apkpure"; fi
+            else
+              dbg "apkpure download failed: $?"
             fi
           fi
 
-          # Source 3: Uptodown (may be XAPK)
+          # ---- Source 3: APKCombo ----
           if [ "$ok" != "1" ]; then
+            dbg "=== SOURCE 3: APKCombo ==="
             rm -f github.apk
-            page=$(curl -sL -A "$UA" "https://github-android.en.uptodown.com/android/download")
-            url=$(echo "$page" | grep -oE 'https://[^"]+uptodown[^"]*\.x?apk[^"]*' | head -1)
-            echo "uptodown url: $url"
-            if [ -n "$url" ] && curl -fL -A "$UA" --max-time 300 -o github.apk "$url" \
-               && [ "$(head -c 2 github.apk)" = "PK" ] && [ "$(stat -c%s github.apk)" -gt 10000000 ]; then
-              ok=1; src="uptodown"
+            curl -sL -A "$UA" --max-time 60 \
+              "https://apkcombo.com/github/com.github.android/download-apk/" -o /tmp/combo.html
+            dbg "apkcombo page size: $(stat -c%s /tmp/combo.html 2>/dev/null || echo 0)"
+            dbg "apkcombo page head: $(head -c 300 /tmp/combo.html | tr -d '\n')"
+            combo_url=$(grep -oE 'https://[^"]+\.apk[^"]*' /tmp/combo.html | grep -viE 'icon|sprite' | head -1)
+            dbg "apkcombo extracted url: $combo_url"
+            if [ -n "$combo_url" ] && curl -fL -A "$UA" --max-time 300 -o github.apk "$combo_url"; then
+              magic=$(head -c 2 github.apk); size=$(stat -c%s github.apk 2>/dev/null || echo 0)
+              dbg "apkcombo file: magic=$magic size=$size"
+              if [ "$magic" = "PK" ] && [ "$size" -gt 10000000 ]; then ok=1; src="apkcombo"; fi
+            else
+              dbg "apkcombo download failed: $?"
             fi
           fi
 
-          [ "$ok" = "1" ] || { echo "ALL SOURCES FAILED"; exit 1; }
-          echo "source: $src, size: $(stat -c%s github.apk)"
-          mv github.apk "GitHub-Android-${src}.apk"
-          ls -la
+          if [ "$ok" = "1" ]; then
+            mv github.apk "GitHub-Android-${src}.apk"
+            dbg "SUCCESS from $src size=$(stat -c%s GitHub-Android-${src}.apk)"
+          else
+            dbg "ALL SOURCES FAILED"
+            cp diag.txt DIAGNOSTICS.txt
+          fi
 
-      - name: Create release with APK
+      - name: Create release (APK or diagnostics)
         if: steps.decide.outputs.mode == 'fetch'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          f=$(ls GitHub-Android-*.apk)
           gh release delete apk-tmp --yes --cleanup-tag 2>/dev/null || true
-          gh release create apk-tmp "$f" \
-            --title "GitHub for Android APK (temp)" \
-            --notes "Auto-fetched installer for personal use. Safe to delete."
+          if ls GitHub-Android-*.apk >/dev/null 2>&1; then
+            f=$(ls GitHub-Android-*.apk)
+            gh release create apk-tmp "$f" \
+              --title "GitHub for Android APK (temp)" \
+              --notes "Auto-fetched installer for personal use. Safe to delete."
+          else
+            gh release create apk-tmp DIAGNOSTICS.txt \
+              --title "Fetch FAILED - diagnostics" \
+              --notes "All mirrors failed; diagnostics attached."
+            exit 1
+          fi
 
       - name: Cleanup release
         if: steps.decide.outputs.mode == 'cleanup'
