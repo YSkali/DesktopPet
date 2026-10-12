@@ -95,24 +95,52 @@ jobs:
             [ -n "$combo_url" ] && try_download apkcombo "$combo_url"
           fi
 
-          # ---- Source 5: Uptodown ----
+          # ---- Source 5: Uptodown (with retries) ----
           if [ "$ok" != "1" ]; then
             dbg "=== SOURCE 5: Uptodown ==="
-            curl -sL -A "$UA" --max-time 60 \
-              "https://github-android.en.uptodown.com/android/download" -o /tmp/uto.html
-            dbg "page size: $(stat -c%s /tmp/uto.html 2>/dev/null || echo 0)"
+            for attempt in 1 2 3 4 5; do
+              curl -sL -A "$UA" -c /tmp/uto.ck -b /tmp/uto.ck --max-time 60 \
+                "https://github-android.en.uptodown.com/android/download" -o /tmp/uto.html
+              sz=$(stat -c%s /tmp/uto.html 2>/dev/null || echo 0)
+              dbg "attempt $attempt: size=$sz"
+              [ "$sz" -gt 100000 ] && break
+              dbg "  small resp content: $(head -c 200 /tmp/uto.html | tr -d '\n')"
+              sleep 5
+            done
             dbg "--- uptodown deep dive ---"
-            dbg "-- xapk/apk refs:"
-            grep -oE '"[^"]*\.(x?apk)[^"]*"' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "   $l"; done
-            dbg "-- data-url attrs:"
-            grep -oE 'data-url="[^"]+"' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "   $l"; done
-            dbg "-- download-ish anchors:"
-            grep -oE '<a[^>]+(download|dl)[^>]*>' /tmp/uto.html | head -10 | while read -r l; do dbg "   $(echo "$l" | head -c 300)"; done
-            dbg "-- dl.uptodown refs:"
-            grep -oE '(https:)?//[a-z0-9.-]*uptodown[^"'"'"' ]*(dl|download)[^"'"'"' ]*' /tmp/uto.html | sort -u | head -15 | while read -r l; do dbg "   $l"; done
-            uto_url=$(grep -oE 'https://[^"]+uptodown[^"]*\.x?apk[^"]*' /tmp/uto.html | head -1)
+            grep -oE '"[^"]*\.(x?apk)[^"]*"' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "   xapkref: $l"; done
+            grep -oE 'data-url="[^"]+"' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "   data-url: $l"; done
+            grep -oE '<a[^>]+class="[^"]*download[^"]*"[^>]*>' /tmp/uto.html | head -10 | while read -r l; do dbg "   anchor: $(echo "$l" | head -c 250)"; done
+            grep -oE '(https:)?//[a-z0-9.-]*(uptodown|dw\.)[^"'"'"' ]*' /tmp/uto.html | grep -iE 'dl|down' | sort -u | head -15 | while read -r l; do dbg "   dlref: $l"; done
+            # try fetching the plain /download page too
+            curl -sL -A "$UA" -c /tmp/uto.ck -b /tmp/uto.ck --max-time 60 \
+              "https://github-android.en.uptodown.com/download" -o /tmp/uto2.html
+            dbg "/download page size: $(stat -c%s /tmp/uto2.html 2>/dev/null || echo 0)"
+            grep -oE 'data-url="[^"]+"' /tmp/uto2.html | sort -u | head -10 | while read -r l; do dbg "   dl2 data-url: $l"; done
+            grep -oE '(https:)?//[^"'"'"' ]*\.x?apk[^"'"'"' ]*' /tmp/uto2.html | sort -u | head -10 | while read -r l; do dbg "   dl2 apkref: $l"; done
+            uto_url=$(grep -hoE '(https:)?//[^"'"'"' ]*\.x?apk[^"'"'"' ]*' /tmp/uto.html /tmp/uto2.html | grep -i uptodown | head -1)
             dbg "extracted direct: $uto_url"
             [ -n "$uto_url" ] && try_download uptodown "$uto_url"
+          fi
+
+          # ---- Source 7: APKSum ----
+          if [ "$ok" != "1" ]; then
+            dbg "=== SOURCE 7: APKSum ==="
+            curl -sL -A "$UA" --max-time 60 "https://www.apksum.com/app/github/com.github.android" -o /tmp/sum.html
+            dbg "page size: $(stat -c%s /tmp/sum.html 2>/dev/null || echo 0) head: $(head -c 150 /tmp/sum.html | tr -d '\n')"
+            sum_url=$(grep -oE 'https://[^"]+\.apk[^"]*' /tmp/sum.html | head -1)
+            dbg "extracted: $sum_url"
+            [ -n "$sum_url" ] && try_download apksum "$sum_url"
+          fi
+
+          # ---- Source 8: apksos ----
+          if [ "$ok" != "1" ]; then
+            dbg "=== SOURCE 8: apksos ==="
+            curl -sL -A "$UA" --max-time 60 "https://apksos.com/app/com.github.android" -o /tmp/sos.html
+            dbg "page size: $(stat -c%s /tmp/sos.html 2>/dev/null || echo 0) head: $(head -c 150 /tmp/sos.html | tr -d '\n')"
+            sos_url=$(grep -oE 'https://[^"]+\.apk[^"]*' /tmp/sos.html | head -1)
+            dbg "extracted: $sos_url"
+            [ -n "$sos_url" ] && try_download apksos "$sos_url"
           fi
 
           # ---- Source 6: APKFab ----
