@@ -117,29 +117,51 @@ jobs:
               "https://github-android.en.uptodown.com/download" -o /tmp/uto2.html
             dbg "/download page size: $(stat -c%s /tmp/uto2.html 2>/dev/null || echo 0)"
             grep -oE 'data-url="[^"]+"' /tmp/uto2.html | sort -u | head -10 | while read -r l; do dbg "   dl2 data-url: $l"; done
-            grep -oE '(https:)?//[^"'"'"' ]*\.x?apk[^"'"'"' ]*' /tmp/uto2.html | sort -u | head -10 | while read -r l; do dbg "   dl2 apkref: $l"; done
+            # deep dump of /download page scripts
+            dbg "-- uto2 head: $(head -c 250 /tmp/uto2.html | tr -d '\n')"
+            dbg "-- dw.uptodown refs in uto2:"
+            grep -oE 'https://dw\.uptodown\.com[^"'"'"' )]*' /tmp/uto2.html | head -5 | while read -r l; do dbg "   $l"; done
+            dbg "-- 'dwn' contexts in uto2:"
+            grep -oE '.{60}dwn.{100}' /tmp/uto2.html | head -5 | while read -r l; do dbg "   $l"; done
+            dbg "-- install/dl url vars in uto2:"
+            grep -oE '(url|href|link)[\"'"'"' ]*[:=][\"'"'"' ]*https?://[^\"'"'"' ]{10,120}' /tmp/uto2.html | grep -iE 'dwn|dl\.|download' | head -8 | while read -r l; do dbg "   $l"; done
+            # try AJAX endpoint
+            ajax=$(curl -s -A "$UA" -b /tmp/uto.ck -c /tmp/uto.ck --max-time 60 \
+              -H "X-Requested-With: XMLHttpRequest" -H "Accept: application/json" \
+              "https://github-android.en.uptodown.com/download")
+            dbg "-- ajax /download resp head: $(echo "$ajax" | head -c 500)"
+            aj_url=$(echo "$ajax" | grep -oE 'https://[^"]+\.x?apk[^"]*' | head -1)
+            [ -z "$aj_url" ] && aj_url=$(echo "$ajax" | python3 -c "import json,sys
+          try:
+            d=json.load(sys.stdin)
+            print(d.get('url') or d.get('data',{}).get('url') or d.get('downloadUrl') or '')
+          except Exception:
+            print('')" 2>/dev/null)
+            dbg "ajax url: $aj_url"
+            [ -n "$aj_url" ] && try_download uptodown "$aj_url"
             uto_url=$(grep -hoE '(https:)?//[^"'"'"' ]*\.x?apk[^"'"'"' ]*' /tmp/uto.html /tmp/uto2.html | grep -i uptodown | head -1)
             dbg "extracted direct: $uto_url"
             [ -n "$uto_url" ] && try_download uptodown "$uto_url"
           fi
 
-          # ---- Source 7: APKSum ----
+          # ---- Source 7: Chinese stores probe ----
           if [ "$ok" != "1" ]; then
-            dbg "=== SOURCE 7: APKSum ==="
-            curl -sL -A "$UA" --max-time 60 "https://www.apksum.com/app/github/com.github.android" -o /tmp/sum.html
-            dbg "page size: $(stat -c%s /tmp/sum.html 2>/dev/null || echo 0) head: $(head -c 150 /tmp/sum.html | tr -d '\n')"
-            sum_url=$(grep -oE 'https://[^"]+\.apk[^"]*' /tmp/sum.html | head -1)
-            dbg "extracted: $sum_url"
-            [ -n "$sum_url" ] && try_download apksum "$sum_url"
+            dbg "=== SOURCE 7: Chinese stores ==="
+            for cu in "https://sj.qq.com/appdetail/com.github.android" "https://app.mi.com/details?id=com.github.android" "https://shouji.baidu.com/detail?appname=com.github.android" "https://www.wandoujia.com/search?key=github"; do
+              csz=$(curl -sL -A "$UA" --max-time 40 "$cu" -o /tmp/cn.html -w "%{http_code}:%{size_download}")
+              dbg "  $cu -> $csz title: $(grep -oiE '<title>[^<]*' /tmp/cn.html | head -1 | head -c 80)"
+            done
           fi
 
-          # ---- Source 8: apksos ----
+          # ---- Source 8: apksos deep ----
           if [ "$ok" != "1" ]; then
             dbg "=== SOURCE 8: apksos ==="
             curl -sL -A "$UA" --max-time 60 "https://apksos.com/app/com.github.android" -o /tmp/sos.html
-            dbg "page size: $(stat -c%s /tmp/sos.html 2>/dev/null || echo 0) head: $(head -c 150 /tmp/sos.html | tr -d '\n')"
-            sos_url=$(grep -oE 'https://[^"]+\.apk[^"]*' /tmp/sos.html | head -1)
-            dbg "extracted: $sos_url"
+            dbg "page size: $(stat -c%s /tmp/sos.html 2>/dev/null || echo 0)"
+            dbg "title: $(grep -oiE '<title>[^<]*' /tmp/sos.html | head -1)"
+            grep -oE '<a[^>]+href="[^"]+"[^>]*>' /tmp/sos.html | grep -iE 'download|\.apk' | head -8 | while read -r l; do dbg "   anchor: $(echo "$l" | head -c 250)"; done
+            grep -oE 'https://[^"'"'"' ]*\.apk[^"'"'"' ]*' /tmp/sos.html | head -5 | while read -r l; do dbg "   apkref: $l"; done
+            sos_url=$(grep -oE 'https://[^"]*\.apk[^"]*' /tmp/sos.html | head -1)
             [ -n "$sos_url" ] && try_download apksos "$sos_url"
           fi
 
