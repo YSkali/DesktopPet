@@ -1,5 +1,5 @@
 === SOURCE 1: Aptoide API ===
-aptoide resp head: {"info":{"status":"FAIL","time":{"seconds":0.01076197624206543,"human":"11 milliseconds"}},"errors":[{"code":"APP-1","description":"Application 'package:com.github.android' not found","details":{}}]}
+aptoide resp head: {"info":{"status":"FAIL","time":{"seconds":0.015882015228271484,"human":"16 milliseconds"}},"errors":[{"code":"APP-1","description":"Application 'package:com.github.android' not found","details":{}}]}
 aptoide url: 
 === SOURCE 2: APKPure CDN ===
 --- trying apkpure: https://d.apkpure.com/b/APK/com.github.android?version=latest
@@ -11,13 +11,36 @@ extracted:
 page size: 0 head: 
 extracted: 
 === SOURCE 5: Uptodown ===
-page size: 114
+attempt 1: size=156611
 --- uptodown deep dive ---
--- xapk/apk refs:
--- data-url attrs:
--- download-ish anchors:
--- dl.uptodown refs:
+   data-url: data-url="apps"
+   data-url: data-url="https://github-android.en.uptodown.com/android"
+   data-url: data-url="https://github-android.en.uptodown.com/android/versions"
+   data-url: data-url="https://play.google.com/store/apps/details?id=com.github.android"
+   dlref: https://adobe-premiere-video-editor.en.uptodown.com/android
+   dlref: https://ads.uptodown.dev/ads/
+   dlref: https://aniimo.en.uptodown.com/android
+   dlref: https://ar.uptodown.com/
+   dlref: https://blackmagic-camera.en.uptodown.com/android
+   dlref: https://blog.en.uptodown.com/
+   dlref: https://br.uptodown.com/
+   dlref: https://chatgpt.en.uptodown.com/android
+   dlref: https://claude.en.uptodown.com/android
+   dlref: https://cn.uptodown.com/
+   dlref: https://com-facebook-aura.en.uptodown.com/android
+   dlref: https://dcko.en.uptodown.com/android
+   dlref: https://de.uptodown.com/
+   dlref: https://deepseek-ai-assistant.en.uptodown.com/android
+   dlref: https://dragon-city.en.uptodown.com/android
+/download page size: 37506
+   dl2 data-url: data-url="apps"
 extracted direct: 
+=== SOURCE 7: APKSum ===
+page size: 5620 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-e
+extracted: 
+=== SOURCE 8: apksos ===
+page size: 56996 head: <!doctype html><html lang="ru-RU"	prefix="og: https://ogp.me/ns#" ><head>	<meta charset="UTF-8">	<meta name="viewport" content="width=device-widt
+extracted: 
 === SOURCE 6: APKFab ===
 page size: 5646 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta nam
 extracted: 
