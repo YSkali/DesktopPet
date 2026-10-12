@@ -1,0 +1,85 @@
+name: Fetch GitHub Android APK (temp)
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fetch-apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide action (fetch or cleanup)
+        id: decide
+        run: |
+          MSG="${{ github.event.head_commit.message }}"
+          if echo "$MSG" | grep -qi '\[cleanup\]'; then
+            echo "mode=cleanup" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=fetch" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Download APK from mirrors
+        if: steps.decide.outputs.mode == 'fetch'
+        run: |
+          set -x
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+          ok=0
+
+          # Source 1: APKPure CDN (plain APK)
+          if curl -fL -A "$UA" --retry 2 --max-time 300 -o github.apk \
+               "https://d.apkpure.com/b/APK/com.github.android?version=latest"; then
+            if [ "$(head -c 2 github.apk)" = "PK" ] && [ "$(stat -c%s github.apk)" -gt 15000000 ]; then ok=1; src="apkpure"; fi
+          fi
+
+          # Source 2: APKCombo download-apk page (base APK)
+          if [ "$ok" != "1" ]; then
+            rm -f github.apk
+            url=$(curl -sL -A "$UA" "https://apkcombo.com/github/com.github.android/download-apk" \
+                  | grep -oE 'https://[^"]+\.apk[^"]*' | grep -v icon | head -1)
+            echo "apkcombo url: $url"
+            if [ -n "$url" ] && curl -fL -A "$UA" --max-time 300 -o github.apk "$url" \
+               && [ "$(head -c 2 github.apk)" = "PK" ] && [ "$(stat -c%s github.apk)" -gt 15000000 ]; then
+              ok=1; src="apkcombo"
+            fi
+          fi
+
+          # Source 3: Uptodown (may be XAPK)
+          if [ "$ok" != "1" ]; then
+            rm -f github.apk
+            page=$(curl -sL -A "$UA" "https://github-android.en.uptodown.com/android/download")
+            url=$(echo "$page" | grep -oE 'https://[^"]+uptodown[^"]*\.x?apk[^"]*' | head -1)
+            echo "uptodown url: $url"
+            if [ -n "$url" ] && curl -fL -A "$UA" --max-time 300 -o github.apk "$url" \
+               && [ "$(head -c 2 github.apk)" = "PK" ] && [ "$(stat -c%s github.apk)" -gt 10000000 ]; then
+              ok=1; src="uptodown"
+            fi
+          fi
+
+          [ "$ok" = "1" ] || { echo "ALL SOURCES FAILED"; exit 1; }
+          echo "source: $src, size: $(stat -c%s github.apk)"
+          mv github.apk "GitHub-Android-${src}.apk"
+          ls -la
+
+      - name: Create release with APK
+        if: steps.decide.outputs.mode == 'fetch'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          f=$(ls GitHub-Android-*.apk)
+          gh release delete apk-tmp --yes --cleanup-tag 2>/dev/null || true
+          gh release create apk-tmp "$f" \
+            --title "GitHub for Android APK (temp)" \
+            --notes "Auto-fetched installer for personal use. Safe to delete."
+
+      - name: Cleanup release
+        if: steps.decide.outputs.mode == 'cleanup'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete apk-tmp --yes --cleanup-tag || true
+          echo "release deleted"
