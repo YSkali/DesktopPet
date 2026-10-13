@@ -25,15 +25,114 @@ jobs:
             echo "mode=fetch" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Curl mirror sources
+        if: steps.decide.outputs.mode == 'fetch'
+        run: |
+          set +e
+          : > diag.txt
+          dbg() { echo "$@" | tee -a diag.txt; }
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+
+          trydl() {
+            name="$1"; url="$2"; ref="$3"
+            [ -z "$url" ] && { dbg "$name: no url"; return 1; }
+            code=$(curl -sL -A "$UA" ${ref:+-e "$ref"} --max-time 300 -o github-app-file -w "%{http_code}" "$url")
+            sz=$(stat -c%s github-app-file 2>/dev/null || echo 0)
+            mg=$(head -c 2 github-app-file 2>/dev/null)
+            dbg "$name: http=$code size=$sz magic=$mg url=$url"
+            if [ "$mg" = "PK" ] && [ "$sz" -gt 10000000 ]; then return 0; fi
+            rm -f github-app-file; return 1
+          }
+
+          extract_apk_url() {
+            # $1 = page file, prefer https .apk links
+            grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' "$1" | grep -viE 'icon|logo' | head -1
+          }
+
+          # ---- apkmonk ----
+          if [ ! -f github-app-file ]; then
+            dbg "=== apkmonk ==="
+            curl -sL -A "$UA" --max-time 60 "https://www.apkmonk.com/app/com.github.android/" -o /tmp/monk.html
+            dbg "page size: $(stat -c%s /tmp/monk.html 2>/dev/null || echo 0)"
+            dl_page=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/monk.html | head -1 | sed 's/href="//;s/"//')
+            dbg "dl page: $dl_page"
+            case "$dl_page" in http*) ;; /*) dl_page="https://www.apkmonk.com$dl_page";; *) dl_page="";; esac
+            if [ -n "$dl_page" ]; then
+              curl -sL -A "$UA" -e "https://www.apkmonk.com/app/com.github.android/" --max-time 60 "$dl_page" -o /tmp/monk2.html
+              u=$(extract_apk_url /tmp/monk2.html)
+              trydl apkmonk "$u" "$dl_page" || true
+            fi
+          fi
+
+          # ---- malavida ----
+          if [ ! -f github-app-file ]; then
+            dbg "=== malavida ==="
+            curl -sL -A "$UA" --max-time 60 "https://www.malavida.com/en/soft/github/android/" -o /tmp/mala.html
+            dbg "page size: $(stat -c%s /tmp/mala.html 2>/dev/null || echo 0)"
+            dl_page=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/mala.html | head -1 | sed 's/href="//;s/"//')
+            dbg "dl page: $dl_page"
+            case "$dl_page" in http*) ;; /*) dl_page="https://www.malavida.com$dl_page";; *) dl_page="";; esac
+            if [ -n "$dl_page" ]; then
+              curl -sL -A "$UA" -e "https://www.malavida.com/en/soft/github/android/" --max-time 60 "$dl_page" -o /tmp/mala2.html
+              dbg "dl page size: $(stat -c%s /tmp/mala2.html 2>/dev/null || echo 0)"
+              u=$(extract_apk_url /tmp/mala2.html)
+              [ -z "$u" ] && u=$(grep -oE '(https:)?//[^"'"'"' ]*(cdn|dl|download)[^"'"'"' ]*' /tmp/mala2.html | head -1)
+              case "$u" in //*) u="https:$u";; esac
+              trydl malavida "$u" "$dl_page" || true
+            fi
+          fi
+
+          # ---- apk.support ----
+          if [ ! -f github-app-file ]; then
+            dbg "=== apk.support ==="
+            curl -sL -A "$UA" --max-time 60 "https://apk.support/app/com.github.android" -o /tmp/sup.html
+            dbg "page size: $(stat -c%s /tmp/sup.html 2>/dev/null || echo 0)"
+            u=$(extract_apk_url /tmp/sup.html)
+            [ -z "$u" ] && u=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/sup.html | head -1 | sed 's/href="//;s/"//')
+            case "$u" in http*) ;; /*) u="https://apk.support$u";; esac
+            trydl apksupport "$u" "https://apk.support/app/com.github.android" || true
+          fi
+
+          # ---- apkfab ----
+          if [ ! -f github-app-file ]; then
+            dbg "=== apkfab ==="
+            curl -sL -A "$UA" --max-time 60 "https://apkfab.com/github/com.github.android" -o /tmp/fab.html
+            dbg "page size: $(stat -c%s /tmp/fab.html 2>/dev/null || echo 0)"
+            u=$(extract_apk_url /tmp/fab.html)
+            [ -z "$u" ] && u=$(grep -oE 'href="[^"]*\.apk[^"]*"' /tmp/fab.html | head -1 | sed 's/href="//;s/"//')
+            case "$u" in http*) ;; /*) u="https://apkfab.com$u";; esac
+            trydl apkfab "$u" "https://apkfab.com/github/com.github.android" || true
+          fi
+
+          # ---- uptodown curl retry (sometimes serves full page) ----
+          if [ ! -f github-app-file ]; then
+            dbg "=== uptodown curl ==="
+            curl -sL -A "$UA" --max-time 60 "https://github-android.en.uptodown.com/android/download" -o /tmp/uto.html
+            dbg "page size: $(stat -c%s /tmp/uto.html 2>/dev/null || echo 0)"
+            u=$(grep -oE '(https:)?//[^"'"'"' ]*(dw\.uptodown|dwn/)[^"'"'"' ]*' /tmp/uto.html | head -1)
+            case "$u" in //*) u="https:$u";; esac
+            dbg "dw url: $u"
+            trydl uptodown "$u" "https://github-android.en.uptodown.com/android/download" || true
+          fi
+
+          exit 0
+
       - name: Setup Playwright
         if: steps.decide.outputs.mode == 'fetch'
         run: |
+          sudo apt-get update -qq 2>&1 | tail -1
+          sudo apt-get install -y -qq xvfb 2>&1 | tail -1
           npm install playwright@1.49.0 --no-save 2>&1 | tail -1
           npx playwright install chromium --with-deps 2>&1 | tail -3
 
       - name: Browser download attempt
         if: steps.decide.outputs.mode == 'fetch'
         run: |
+          set +e
+          if [ -f github-app-file ]; then
+            echo "already have file from curl sources, skipping browser" | tee -a diag.txt
+            exit 0
+          fi
           cat > dl-browser.js << 'EOF'
           const { chromium } = require('playwright');
           const fs = require('fs');
@@ -160,8 +259,6 @@ jobs:
             log('=== BROWSER DONE ===');
           })().catch(e => { log('FATAL: ' + e.message); process.exit(1); });
           EOF
-          EOF
-          : > diag.txt
           xvfb-run -a node dl-browser.js 2>&1 | tee -a diag.txt
           exit 0
 
@@ -171,7 +268,6 @@ jobs:
           set +e
           dbg() { echo "$@" | tee -a diag.txt; }
           dbg "--- processing ---"
-          # retry candidate url via curl if browser navigated instead of downloading
           if [ ! -f github-app-file ] && [ -f candidate-url.txt ]; then
             u=$(cat candidate-url.txt)
             dbg "retrying via curl: $u"
@@ -188,7 +284,6 @@ jobs:
                 dbg "XAPK detected - extracting"
                 rm -rf xapk && mkdir xapk
                 unzip -o -q github-app-file -d xapk
-                ls -la xapk/ | head -20 | while read -r l; do dbg "  $l"; done
                 base=$(cd xapk && ls -S *.apk 2>/dev/null | head -1)
                 dbg "base apk: $base ($(stat -c%s xapk/$base 2>/dev/null) bytes)"
                 if [ -n "$base" ]; then
