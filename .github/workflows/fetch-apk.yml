@@ -76,36 +76,53 @@ jobs:
               try {
                 log('=== APKMIRROR BROWSER ===');
                 await page.goto('https://www.apkmirror.com/apk/github-inc/github/', { waitUntil: 'domcontentloaded', timeout: 60000 });
-                await page.waitForTimeout(3000);
+                await page.waitForTimeout(5000);
                 log('title: ' + (await page.title()));
-                const rel = page.locator('a[href*="/apk/github-inc/github/"]:has-text("GitHub")').first();
-                if (await rel.count() > 0) {
-                  log('release link: ' + (await rel.getAttribute('href')));
-                  await rel.click();
-                  await page.waitForTimeout(3000);
-                  log('on release page: ' + page.url());
-                  const dlbtn = page.locator('a:has-text("Download APK"), a.downloadButton, a[href*="/download/"]').first();
-                  if (await dlbtn.count() > 0) {
-                    const dlPromise = page.waitForEvent('download', { timeout: 60000 }).catch(e => { log('no dl event: ' + String(e.message).split('\n')[0]); return null; });
-                    await dlbtn.click().catch(e => log('click err: ' + String(e.message).split('\n')[0]));
-                    await page.waitForTimeout(8000);
-                    log('apkmirror url now: ' + page.url());
-                    const dl2 = await dlPromise;
-                    if (dl2) {
-                      log('DOWNLOAD EVENT filename=' + dl2.suggestedFilename());
-                      await dl2.saveAs('github-app-file');
-                      log('saved github-app-file');
-                    } else {
-                      const here = page.locator('a:has-text("here"), a:has-text("Download"), #download-file').first();
-                      if (await here.count() > 0) {
-                        const p2 = page.waitForEvent('download', { timeout: 60000 }).catch(() => null);
-                        await here.click().catch(() => {});
-                        const dl3 = await p2;
-                        if (dl3) { log('DL3 filename=' + dl3.suggestedFilename()); await dl3.saveAs('github-app-file'); }
+                log('page text head: ' + (await page.locator('body').innerText()).slice(0, 200).replace(/\n/g, ' '));
+                const links = await page.$$eval('a[href*="/apk/github-inc/github/"]', els => els.slice(0, 15).map(e => e.getAttribute('href') + ' || ' + e.textContent.trim().replace(/\s+/g, ' ').slice(0, 70)));
+                links.forEach(l => log('link: ' + l));
+                const relHref = await page.evaluate(() => {
+                  const as = [...document.querySelectorAll('a[href*="release"]')];
+                  return as.length ? as[0].href : null;
+                });
+                log('relHref: ' + relHref);
+                if (relHref) {
+                  await page.goto(relHref, { waitUntil: 'domcontentloaded', timeout: 60000 });
+                  await page.waitForTimeout(4000);
+                  log('release page: ' + page.url());
+                  const anchors = await page.$$eval('a', els => els.map(e => (e.getAttribute('href') || '') + ' || ' + e.textContent.trim().replace(/\s+/g, ' ').slice(0, 50)).filter(t => /download/i.test(t)).slice(0, 15));
+                  anchors.forEach(l => log('  dl-anchor: ' + l));
+                  const dlHref = await page.evaluate(() => {
+                    const as = [...document.querySelectorAll('a[href*="/download/"]')];
+                    return as.length ? as[0].href : null;
+                  });
+                  log('dlHref: ' + dlHref);
+                  if (dlHref) {
+                    await page.goto(dlHref, { waitUntil: 'domcontentloaded', timeout: 60000 });
+                    await page.waitForTimeout(4000);
+                    log('download page: ' + page.url());
+                    const anchors2 = await page.$$eval('a', els => els.map(e => (e.getAttribute('href') || '') + ' || ' + e.textContent.trim().replace(/\s+/g, ' ').slice(0, 50)).filter(t => /\.apk|download|here/i.test(t)).slice(0, 15));
+                    anchors2.forEach(l => log('  dlpage-anchor: ' + l));
+                    const finalSel = await page.evaluate(() => {
+                      const as = [...document.querySelectorAll('a')].filter(a => /\.apk/i.test(a.href || '') || /here/i.test(a.textContent || ''));
+                      return as.length ? as[0].href : null;
+                    });
+                    log('finalSel: ' + finalSel);
+                    if (finalSel) {
+                      const p2 = page.waitForEvent('download', { timeout: 90000 }).catch(e => { log('dl event err: ' + String(e.message).split('\n')[0]); return null; });
+                      await page.goto(finalSel, { timeout: 90000 }).catch(e => log('goto final err: ' + String(e.message).split('\n')[0]));
+                      const dl3 = await p2;
+                      if (dl3) {
+                        log('DL3 filename=' + dl3.suggestedFilename());
+                        await dl3.saveAs('github-app-file');
+                        log('saved');
+                      } else {
+                        fs.writeFileSync('candidate-url.txt', finalSel);
+                        log('saved candidate url: ' + finalSel);
                       }
                     }
-                  } else { log('no download button on release page'); }
-                } else { log('no release link'); }
+                  }
+                }
               } catch (e) { log('apkmirror err: ' + String(e.message).split('\n')[0]); }
             }
 
