@@ -1,55 +1,158 @@
 === d.apkpure.com ===
-apkpure-cdn UA=[APKPure/3.19.39 (Aegon)] http=403 size=5525 magic=<!
-apkpure-cdn UA=[APKPure/3.20.16 (Aegon)] http=403 size=5525 magic=<!
+apkpure-cdn UA=[APKPure/3.19.39 (Aegon)] http=403 size=5546 magic=<!
+apkpure-cdn UA=[APKPure/3.20.16 (Aegon)] http=403 size=5546 magic=<!
 apkpure-cdn UA=[Dalvik/2.1.0 (Linux; U; Android 13; Pixel 7 Build/TQ3A.230805.001)] http=403 size=5653 magic=<!
-=== apkcombo ===
+=== apk4fun ===
+page size: 5595
+apk4fun: no url
+=== sameapk ===
 page size: 0
-apkcombo: no url
-=== apksos ===
-page size: 56996
-  link: action="https://apksos.com/"
-  link: href="#content"
-  link: href="#icon-bars"
-  link: href="#icon-close"
-  link: href="#page"
-  link: href="https://apksos.com/"
-  link: href="https://apksos.com/app/com.github.android/"
-  link: href="https://apksos.com/comments/feed/"
-  link: href="https://apksos.com/feed/"
-  link: href="https://apksos.com/wp-includes/wlwmanifest.xml"
-  link: href="https://apksos.com/xmlrpc.php?rsd"
-  link: href="https://gmpg.org/xfn/11"
-  link: href="https://www.liveinternet.ru/click"
-  link: src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
-  link: src="http://vaporshop-altay.ru/block_script.php"
-  link: src="https://mc.yandex.ru/watch/109410407"
-apksos: no url
-=== apk.support v2 ===
-page size: 5675
-apksupport2: no url
+sameapk: no url
+=== apk.center ===
+page size: 0
+apkcenter: no url
+=== 9apps ===
+page size: 0
+9apps: no url
+=== uptodown curl ===
+page size: 156664
+  ref: data-url=
+uptodown: no url
 === UPTODOWN BROWSER ===
 === UPTODOWN BROWSER ===
-cf wait 0: 
-cf wait 0: 
-cf wait 1: 
-cf wait 1: 
-cf wait 2: 
-cf wait 2: 
-cf wait 3: 
-cf wait 3: 
-cf wait 4: 
-cf wait 4: 
-cf wait 5: 
-cf wait 5: 
-cf passed: false title: 
-cf passed: false title: 
-no download button found
-no download button found
+cf passed: true title: Download GitHub 1.280.0 for Android | Uptodown.com
+cf passed: true title: Download GitHub 1.280.0 for Android | Uptodown.com
+  data-attr: IMG data-url=https://en.uptodown.com
+  data-attr: IMG data-url=https://en.uptodown.com
+  data-attr: IMG data-url=https://en.uptodown.com/windows
+  data-attr: IMG data-url=https://en.uptodown.com/windows
+  data-attr: IMG data-url=https://en.uptodown.com/mac
+  data-attr: IMG data-url=https://en.uptodown.com/ios
+  data-attr: BUTTON data-url=apps
+  data-attr: SPAN data-url=https://play.google.com/store/apps/details?id=com.github.android
+  data-attr: IMG data-url=https://en.uptodown.com/mac
+  data-attr: IMG data-url=https://en.uptodown.com/ios
+  data-attr: BUTTON data-url=apps
+  data-attr: SPAN data-url=https://play.google.com/store/apps/details?id=com.github.android
+  data-attr: BUTTON data-url=https://play.google.com/store/apps/details?id=com.github.android
+  data-attr: BUTTON data-url=https://play.google.com/store/apps/details?id=com.github.android
+  data-attr: SPAN data-url=https://github-android.en.uptodown.com/android/versions
+  data-attr: SPAN data-url=https://github-android.en.uptodown.com/android/versions
+  data-attr: DIV data-url=https://github-android.en.uptodown.com/android
+  data-attr: DIV data-url=https://github-android.en.uptodown.com/android
+  data-attr: DIV data-url=https://github-android.en.uptodown.com/android
+  data-attr: DIV data-url=https://github-android.en.uptodown.com/android
+  btn: <button aria-label="Search" type="submit"> <img alt="Search icon" loading="lazy" width="20" height="20" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-search"> </button>
+  btn: <button aria-label="Search" type="submit"> <img alt="Search icon" loading="lazy" width="20" height="20" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-search"> </button>
+  btn: <button data-url="apps"> <span>Apps</span> </button>
+  btn: <button id="author-link" onclick="addEventAnalytics('authorLink', {'event_category': 'author'});" data-organization-slug="github"> GitHub</button>
+  btn: <button data-url="apps"> <span>Apps</span> </button>
+  btn: <button id="author-link" onclick="addEventAnalytics('authorLink', {'event_category': 'author'});" data-organization-slug="github"> GitHub</button>
+  btn: <button id="detail-download-button" class="button download xapk " data-dwldng="Downloading…" data-showspinner="true" data-app-id="779365" data-file-id="1226349450" data-only-xapk="0" data-download-ver
+  btn: <button id="detail-download-button" class="button download xapk " data-dwldng="Downloading…" data-showspinner="true" data-app-id="779365" data-file-id="1226349450" data-only-xapk="0" data-download-ver
+  btn: <button class="button variants" data-version="14257751" onclick="addEventAnalytics('variants-button', {'event_category': 'variant'});"> <img class="svg" alt="" width="10" height="10" src=" https://stc
+  btn: <button id="gplay-button" data-url="https://play.google.com/store/apps/details?id=com.github.android" class="button external-store" rel="nofollow" onclick="addEventAnalytics('downloadApp', {'event_cat
+  btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
+  btn: <button class="scroll left"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
+  btn: <button name="item-section-more" type="button" class="more" onclick="addEventAnalytics('item-viewMore', {'event_category': 'item'});"> <img alt="See more" width="24" height="24" src="https://stc.utdst
+  btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/svgs/icon-bar-arrow.svg"> </button>
+  btn: <button class="button variants" data-version="14257751" onclick="addEventAnalytics('variants-button', {'event_category': 'variant'});"> <img class="svg" alt="" width="10" height="10" src=" https://stc
+  btn: <button id="gplay-button" data-url="https://play.google.com/store/apps/details?id=com.github.android" class="button external-store" rel="nofollow" onclick="addEventAnalytics('downloadApp', {'event_cat
+  btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
+  btn: <button class="scroll left"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
+  btn: <button name="item-section-more" type="button" class="more" onclick="addEventAnalytics('item-viewMore', {'event_category': 'item'});"> <img alt="See more" width="24" height="24" src="https://stc.utdst
+  btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/svgs/icon-bar-arrow.svg"> </button>
+  script:  { "@context":"https://schema.org", "@type":"WebPage", "url":"https://github-android.en.uptodown.com/android", "isPartOf":{ "@type": "WebSite", "name": "Uptodown", "url" : "https://en.uptodown.com/android", "publisher" : {"@id" : "https://en.uptodown.com/#organization"} }, "mainEntity":{ "@type":"MobileApplication", "name":"GitHub", "url":"https://github-android.en.uptodown.com/android", "description":"The official GitHub app", "image": "https://img.utdstc.com/icon/4ae/f58/4aef58c6b9e0de9aa521e0
+  script:  { "@context":"https://schema.org", "@type":"WebPage", "url":"https://github-android.en.uptodown.com/android", "isPartOf":{ "@type": "WebSite", "name": "Uptodown", "url" : "https://en.uptodown.com/android", "publisher" : {"@id" : "https://en.uptodown.com/#organization"} }, "mainEntity":{ "@type":"MobileApplication", "name":"GitHub", "url":"https://github-android.en.uptodown.com/android", "description":"The official GitHub app", "image": "https://img.utdstc.com/icon/4ae/f58/4aef58c6b9e0de9aa521e0
+  script:  { "@context":"https://schema.org", "@type":"BreadcrumbList", "itemListElement":[ { "@type": "ListItem", "position": 1, "name": "Android", "item": "https://en.uptodown.com" }, { "@type": "ListItem", "position": 2, "name": "Productivity", "item": "https://en.uptodown.com/android/productivity" }, { "@type": "ListItem", "position": 3, "name": "Personal", "item": "https://en.uptodown.com/android/personal" }, { "@type": "ListItem", "position": 4, "name": "GitHub", "item": "https://github-android.en.u
+  script:  { "@context":"https://schema.org", "@type":"BreadcrumbList", "itemListElement":[ { "@type": "ListItem", "position": 1, "name": "Android", "item": "https://en.uptodown.com" }, { "@type": "ListItem", "position": 2, "name": "Productivity", "item": "https://en.uptodown.com/android/productivity" }, { "@type": "ListItem", "position": 3, "name": "Personal", "item": "https://en.uptodown.com/android/personal" }, { "@type": "ListItem", "position": 4, "name": "GitHub", "item": "https://github-android.en.u
+clicking download button (native click)
+clicking download button (native click)
+url now: https://github-android.en.uptodown.com/android/download
+url now: https://github-android.en.uptodown.com/android/download
+--- all network requests (filtered):
 --- all network requests (filtered):
   GET https://github-android.en.uptodown.com/android/download
+  GET https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onDownloadTurnstileAPILoaded
+  GET https://github-android.en.uptodown.com/android/download
+  GET https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onDownloadTurnstileAPILoaded
+  GET https://stc.utdstc.com/1791539799701/download.js
+  GET https://stc.utdstc.com/1791539799701/download.js
+  GET https://stc.utdstc.com/1791539799701/download.css
+  GET https://stc.utdstc.com/1791539799701/download.css
+  GET https://challenges.cloudflare.com/turnstile/v0/g/4df4a60fa397/api.js
+  GET https://challenges.cloudflare.com/turnstile/v0/g/4df4a60fa397/api.js
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91v888089788za208zd888089788xf1&_p=1791856295196&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGA&are=1&cid=1578166464.1791856296&frm=0&pscdl=noap
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91v888089788za208zd888089788xf1&_p=1791856295196&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGA&are=1&cid=1578166464.1791856296&frm=0&pscdl=noap
+  GET https://rtb.gumgum.com/getuid/68kgs8tq?r=https://github-android.en.uptodown.com/android/download&gdpr=0&gdpr_consent=&us_privacy=1---&iframe=1
+  GET https://rtb.gumgum.com/getuid/68kgs8tq?r=https://github-android.en.uptodown.com/android/download&gdpr=0&gdpr_consent=&us_privacy=1---&iframe=1
+  POST https://id5-sync.com/api/config/prebid
+  POST https://id5-sync.com/api/config/prebid
+  GET https://match.adsrvr.org/track/rid?ttd_pid=zdsq63q&fmt=json
+  GET https://match.adsrvr.org/track/rid?ttd_pid=zdsq63q&fmt=json
+  POST https://id5-sync.com/g/v2/492.json
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856296201&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=520e95dc-24e6-4050-b4e4-b69
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856296202&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=520e95dc-24e6-4050-b4e4-b69
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856296202&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=520e95dc-24e6-4050-b4e4-b69
+  GET https://cm.g.doubleclick.net/partnerpixels?url=https%3A%2F%2Fgithub-android.en.uptodown.com%2Fandroid%2Fdownload
+  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=4955244534990606&correlator=1683526382278899&eid=95403397%2C122881423%2C122881522%2C95405395&output=ldjh&gdfp_req=1&vrg=202610080101&ptt=17&impl=fifs&iu_parts=7
+  GET https://www.google.com/recaptcha/api2/aframe
+  POST https://id5-sync.com/g/v2/492.json
+  GET https://gum.criteo.com/sid/json?origin=publishertagids&domain=uptodown.com&sn=ChromeSyncframe&so=0&topUrl=github-android.en.uptodown.com
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91v888089788za200zd888089788xf1&_p=1791856295196&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQ&are=1&cid=1578166464.1791856296&frm=0&pscdl=noapi&rcb=7
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91v888089788za200zd888089788xf1&_p=1791856295196&gcs=G111&gcd=13v3v3v3v5l1&npa=0&dma=0&gdid=dMmY1Mm&_eu=AEIAAGQ&are=1&cid=1578166464.1791856296&f
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-700.woff2
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-regular.woff2
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-500.woff2
+  GET https://tr.blismedia.com/v1/api/sync/openx
+  GET https://ssbsync.smartadserver.com/api/sync?callerId=77&gdpr=0&gdpr_consent=
+  GET https://contextual.media.net/cksync.php?cs=25&gdpr=0&gdpr_consent=&ovsid=%7B%7BAPID%7D%7D&redirect=https%3A%2F%2Fcs-server-s2s.yellowblue.io%2Fcs%3Ffwrd%3D1%26aid%3D11585%26id%3D%3Cvsid%3E&type=ris
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?endpoint=us-east&p=rise_engage
+  GET https://sync.kueezrtb.com/api/cookie?partnerId=kueez-verve&gdpr=0&gdpr_consent=&userId=4d87401e15
+  GET https://token.rubiconproject.com/khaos.json?
+  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3D86da0c15-6921-43bf-a7b1-0cba6dc32e7c%26uid%3D%5Bs
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?p=seedtag&endpoint=eu
+  GET https://token.rubiconproject.com/khaos.json?khaos=MV60Z3UN-1A-AZ9A
+  GET https://capi.connatix.com/us/pixel?puid=MV60Z3WO-W-LS7K&pId=11&gdpr=&gdpr_consent=&us_privacy=
+  GET https://pippio.com/api/sync?pid=5324&it=1&iv=a852d8a5cd0562821771d66cf9efdd2bc924d0d5c81f58c7582ab78bf837d478791426b5417dce21&_=2
+  GET https://www.temu.com/api/adx/cm/pixel-opera?adx_uid=b6821b548b4c5921&gdpr=0&gdpr_consent=&us_privacy=&redir=https%3A%2F%2Ft.oa.opera.com%2Fsync%3Fvendor%3D60369%26pubid%3Dpub9322105895424%26gdpr%3D0%26consent%3D%26us
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?p=medianet
+  GET https://token.rubiconproject.com/khaos.json?khaos=MV60Z3UN-1A-AZ9A
+  GET https://capi.connatix.com/us/pixel?puid=4d87401e15&pId=48&gdpr=0&gdpr_consent=&us_privacy={usPrivacyString}
+  GET https://capi.connatix.com/us/pixel?puid=4d87401e15&pId=48&gdpr=0&gdpr_consent=&us_privacy={usPrivacyString}&final=true
+  GET https://fid.agkn.com/f?apiKey=2391423368&gdpr=0&gdpr_consent=
 === APKPURE BROWSER ===
---- all network requests (filtered):
-  GET https://github-android.en.uptodown.com/android/download
+  POST https://id5-sync.com/g/v2/492.json
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856296201&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=520e95dc-24e6-4050-b4e4-b69
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856296202&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=520e95dc-24e6-4050-b4e4-b69
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856296202&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=520e95dc-24e6-4050-b4e4-b69
+  GET https://cm.g.doubleclick.net/partnerpixels?url=https%3A%2F%2Fgithub-android.en.uptodown.com%2Fandroid%2Fdownload
+  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=4955244534990606&correlator=1683526382278899&eid=95403397%2C122881423%2C122881522%2C95405395&output=ldjh&gdfp_req=1&vrg=202610080101&ptt=17&impl=fifs&iu_parts=7
+  GET https://www.google.com/recaptcha/api2/aframe
+  POST https://id5-sync.com/g/v2/492.json
+  GET https://gum.criteo.com/sid/json?origin=publishertagids&domain=uptodown.com&sn=ChromeSyncframe&so=0&topUrl=github-android.en.uptodown.com
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91v888089788za200zd888089788xf1&_p=1791856295196&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQ&are=1&cid=1578166464.1791856296&frm=0&pscdl=noapi&rcb=7
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91v888089788za200zd888089788xf1&_p=1791856295196&gcs=G111&gcd=13v3v3v3v5l1&npa=0&dma=0&gdid=dMmY1Mm&_eu=AEIAAGQ&are=1&cid=1578166464.1791856296&f
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-700.woff2
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-regular.woff2
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-500.woff2
+  GET https://tr.blismedia.com/v1/api/sync/openx
+  GET https://ssbsync.smartadserver.com/api/sync?callerId=77&gdpr=0&gdpr_consent=
+  GET https://contextual.media.net/cksync.php?cs=25&gdpr=0&gdpr_consent=&ovsid=%7B%7BAPID%7D%7D&redirect=https%3A%2F%2Fcs-server-s2s.yellowblue.io%2Fcs%3Ffwrd%3D1%26aid%3D11585%26id%3D%3Cvsid%3E&type=ris
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?endpoint=us-east&p=rise_engage
+  GET https://sync.kueezrtb.com/api/cookie?partnerId=kueez-verve&gdpr=0&gdpr_consent=&userId=4d87401e15
+  GET https://token.rubiconproject.com/khaos.json?
+  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3D86da0c15-6921-43bf-a7b1-0cba6dc32e7c%26uid%3D%5Bs
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?p=seedtag&endpoint=eu
+  GET https://token.rubiconproject.com/khaos.json?khaos=MV60Z3UN-1A-AZ9A
+  GET https://capi.connatix.com/us/pixel?puid=MV60Z3WO-W-LS7K&pId=11&gdpr=&gdpr_consent=&us_privacy=
+  GET https://pippio.com/api/sync?pid=5324&it=1&iv=a852d8a5cd0562821771d66cf9efdd2bc924d0d5c81f58c7582ab78bf837d478791426b5417dce21&_=2
+  GET https://www.temu.com/api/adx/cm/pixel-opera?adx_uid=b6821b548b4c5921&gdpr=0&gdpr_consent=&us_privacy=&redir=https%3A%2F%2Ft.oa.opera.com%2Fsync%3Fvendor%3D60369%26pubid%3Dpub9322105895424%26gdpr%3D0%26consent%3D%26us
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?p=medianet
+  GET https://token.rubiconproject.com/khaos.json?khaos=MV60Z3UN-1A-AZ9A
+  GET https://capi.connatix.com/us/pixel?puid=4d87401e15&pId=48&gdpr=0&gdpr_consent=&us_privacy={usPrivacyString}
+  GET https://capi.connatix.com/us/pixel?puid=4d87401e15&pId=48&gdpr=0&gdpr_consent=&us_privacy={usPrivacyString}&final=true
+  GET https://fid.agkn.com/f?apiKey=2391423368&gdpr=0&gdpr_consent=
 === APKPURE BROWSER ===
 cf wait 0: Just a moment...
 cf wait 0: Just a moment...
