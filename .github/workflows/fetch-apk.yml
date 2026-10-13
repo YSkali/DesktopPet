@@ -57,36 +57,65 @@ jobs:
             done
           fi
 
-          # ---- APKCombo ----
+          # ---- apk4fun ----
           if [ ! -f github-app-file ]; then
-            dbg "=== apkcombo ==="
-            curl -sL -A "$UA" --max-time 60 "https://apkcombo.com/github/com.github.android/download/apk" -o /tmp/cb.html
-            dbg "page size: $(stat -c%s /tmp/cb.html 2>/dev/null || echo 0)"
-            u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/cb.html | grep -viE 'icon|logo' | head -1)
-            [ -z "$u" ] && u=$(grep -oE 'href="[^"]*(download|/r\?)[^"]*"' /tmp/cb.html | head -1 | sed 's/href="//;s/"//')
-            case "$u" in http*) ;; /*) u="https://apkcombo.com$u";; esac
-            trydl apkcombo "$u" "https://apkcombo.com/github/com.github.android/download/apk" || true
+            dbg "=== apk4fun ==="
+            curl -sL -A "$UA" --max-time 60 "https://www.apk4fun.com/apps/com.github.android/" -o /tmp/a4f.html
+            dbg "page size: $(stat -c%s /tmp/a4f.html 2>/dev/null || echo 0)"
+            u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/a4f.html | grep -viE 'icon|logo' | head -1)
+            if [ -z "$u" ]; then
+              dl=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/a4f.html | head -1 | sed 's/href="//;s/"//')
+              case "$dl" in http*) ;; /*) dl="https://www.apk4fun.com$dl";; *) dl="";; esac
+              if [ -n "$dl" ]; then
+                curl -sL -A "$UA" -e "https://www.apk4fun.com/apps/com.github.android/" --max-time 60 "$dl" -o /tmp/a4f2.html
+                dbg "dl page size: $(stat -c%s /tmp/a4f2.html 2>/dev/null || echo 0)"
+                u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/a4f2.html | grep -viE 'icon|logo' | head -1)
+              fi
+            fi
+            trydl apk4fun "$u" "https://www.apk4fun.com/" || true
           fi
 
-          # ---- apksos ----
+          # ---- sameapk ----
           if [ ! -f github-app-file ]; then
-            dbg "=== apksos ==="
-            curl -sL -A "$UA" --max-time 60 "https://apksos.com/app/com.github.android" -o /tmp/sos.html
-            dbg "page size: $(stat -c%s /tmp/sos.html 2>/dev/null || echo 0)"
-            grep -oE '(href|action|src)="[^"]*"' /tmp/sos.html | grep -viE '\.(css|js|png|jpg|ico|svg)|fonts|google|facebook' | sort -u | head -25 | while read -r l; do dbg "  link: $l"; done
-            u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/sos.html | grep -viE 'icon|logo' | head -1)
-            [ -z "$u" ] && u=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/sos.html | head -1 | sed 's/href="//;s/"//')
-            case "$u" in http*) ;; /*) u="https://apksos.com$u";; esac
-            trydl apksos "$u" "https://apksos.com/app/com.github.android" || true
+            dbg "=== sameapk ==="
+            curl -sL -A "$UA" --max-time 60 "https://www.sameapk.com/app/com.github.android/" -o /tmp/sam.html
+            dbg "page size: $(stat -c%s /tmp/sam.html 2>/dev/null || echo 0)"
+            grep -oE 'href="[^"]*"' /tmp/sam.html | grep -iE 'download|\.apk' | sort -u | head -6 | while read -r l; do dbg "  link: $l"; done
+            u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/sam.html | grep -viE 'icon|logo' | head -1)
+            [ -z "$u" ] && u=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/sam.html | head -1 | sed 's/href="//;s/"//')
+            case "$u" in http*) ;; /*) u="https://www.sameapk.com$u";; esac
+            trydl sameapk "$u" "https://www.sameapk.com/" || true
           fi
 
-          # ---- apk.support deeper ----
+          # ---- apk.center ----
           if [ ! -f github-app-file ]; then
-            dbg "=== apk.support v2 ==="
-            curl -sL -A "$UA" --max-time 60 "https://apk.support/download-app/com.github.android" -o /tmp/sup2.html
-            dbg "page size: $(stat -c%s /tmp/sup2.html 2>/dev/null || echo 0)"
-            u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/sup2.html | grep -viE 'icon|logo' | head -1)
-            trydl apksupport2 "$u" "https://apk.support/" || true
+            dbg "=== apk.center ==="
+            curl -sL -A "$UA" --max-time 60 "https://apk.center/app_com.github.android.html" -o /tmp/ctr.html
+            dbg "page size: $(stat -c%s /tmp/ctr.html 2>/dev/null || echo 0)"
+            u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/ctr.html | grep -viE 'icon|logo' | head -1)
+            [ -z "$u" ] && u=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/ctr.html | head -1 | sed 's/href="//;s/"//')
+            case "$u" in http*) ;; /*) u="https://apk.center$u";; esac
+            trydl apkcenter "$u" "https://apk.center/" || true
+          fi
+
+          # ---- 9apps ----
+          if [ ! -f github-app-file ]; then
+            dbg "=== 9apps ==="
+            curl -sL -A "$UA" --max-time 60 "https://www.9apps.com/android-apps/GitHub/" -o /tmp/nine.html
+            dbg "page size: $(stat -c%s /tmp/nine.html 2>/dev/null || echo 0)"
+            u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/nine.html | grep -viE 'icon|logo' | head -1)
+            trydl 9apps "$u" "https://www.9apps.com/" || true
+          fi
+
+          # ---- uptodown curl retry ----
+          if [ ! -f github-app-file ]; then
+            dbg "=== uptodown curl ==="
+            curl -sL -A "$UA" --max-time 60 "https://github-android.en.uptodown.com/android/download" -o /tmp/uto.html
+            dbg "page size: $(stat -c%s /tmp/uto.html 2>/dev/null || echo 0)"
+            grep -oE '(dw\.uptodown|post-download|data-url)[^"'"'"' ]*' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "  ref: $l"; done
+            u=$(grep -oE '(https:)?//[^"'"'"' ]*(dw\.uptodown|dwn/)[^"'"'"' ]*' /tmp/uto.html | head -1)
+            case "$u" in //*) u="https:$u";; esac
+            trydl uptodown "$u" "https://github-android.en.uptodown.com/android/download" || true
           fi
 
           exit 0
@@ -159,7 +188,15 @@ jobs:
             // ---- Uptodown ----
             try {
               log('=== UPTODOWN BROWSER ===');
-              await page.goto('https://github-android.en.uptodown.com/android/download', { waitUntil: 'domcontentloaded', timeout: 90000 });
+              for (let att = 0; att < 3; att++) {
+                try {
+                  await page.goto('https://github-android.en.uptodown.com/android/download', { waitUntil: 'domcontentloaded', timeout: 90000 });
+                  const t0 = await page.title().catch(() => '');
+                  if (t0 && t0.length > 2) break;
+                  log('goto attempt ' + att + ' empty title, retrying');
+                  await page.waitForTimeout(5000);
+                } catch (e) { log('goto err ' + att + ': ' + String(e.message).split('\n')[0]); await page.waitForTimeout(5000); }
+              }
               const cfOk = await waitCf(page, 6);
               log('cf passed: ' + cfOk + ' title: ' + (await page.title()));
               await page.waitForTimeout(4000);
@@ -167,6 +204,12 @@ jobs:
               // dump elements carrying data-url / data-* download hints
               const durl = await page.$$eval('[data-url], [data-href], [data-link]', els => els.map(e => e.tagName + ' data-url=' + (e.getAttribute('data-url') || e.getAttribute('data-href') || e.getAttribute('data-link'))).slice(0, 10));
               durl.forEach(x => log('  data-attr: ' + x));
+              // scan raw HTML for direct links / post-download refs
+              const html = await page.content();
+              const dwm = html.match(/https?:\/\/[^"'\s]*(dw\.uptodown|post-download)[^"'\s]*/gi) || [];
+              [...new Set(dwm)].slice(0, 10).forEach(x => log('  html-dw: ' + x));
+              const btnHtml = await page.$$eval('button', els => els.map(e => e.outerHTML.replace(/\s+/g, ' ').slice(0, 200)).slice(0, 10));
+              btnHtml.forEach(x => log('  btn: ' + x));
               // dump inline script snippets mentioning download
               const scripts = await page.$$eval('script:not([src])', els => els.map(e => (e.textContent || '').slice(0, 3000)).filter(t => /dw\.uptodown|download/i.test(t)).slice(0, 3));
               scripts.forEach(t => log('  script: ' + t.replace(/\s+/g, ' ').slice(0, 500)));
