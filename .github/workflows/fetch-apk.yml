@@ -47,15 +47,18 @@ jobs:
           # ---- Uptodown versions API (revanced trick) ----
           if [ ! -f github-app-file ]; then
             dbg "=== uptodown API ==="
-            curl -sL -A "$UA" --max-time 60 "https://github-android.en.uptodown.com/android/apps/779365/versions" -o /tmp/utd.json
-            dbg "json size: $(stat -c%s /tmp/utd.json 2>/dev/null || echo 0) head: $(head -c 200 /tmp/utd.json | tr -d '\n')"
-            vurl=$(grep -oE '"versionURL":"[^"]+"' /tmp/utd.json | head -1 | sed 's/"versionURL":"//;s/"$//' | sed 's#\\/#/#g')
+            curl -sL -A "$UA" --max-time 60 "https://github-android.en.uptodown.com/android/versions" -o /tmp/utd.html
+            dbg "versions page size: $(stat -c%s /tmp/utd.html 2>/dev/null || echo 0)"
+            grep -oE 'href="[^"]*"' /tmp/utd.html | grep -iE 'download|version|apps/' | sort -u | head -15 | while read -r l; do dbg "  vlink: $l"; done
+            vurl=$(grep -oE 'href="https://github-android\.en\.uptodown\.com/android/download/[0-9]+[^"]*"' /tmp/utd.html | head -1 | sed 's/href="//;s/"$//')
+            [ -z "$vurl" ] && vurl=$(grep -oE '"versionURL":"[^"]+"' /tmp/utd.html | head -1 | sed 's/"versionURL":"//;s/"$//' | sed 's#\\/#/#g')
+            [ -z "$vurl" ] && vurl=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/utd.html | grep -v play.google | head -1 | sed 's/href="//;s/"$//')
             dbg "version url: $vurl"
             if [ -n "$vurl" ]; then
-              curl -sL -A "$UA" -e "https://github-android.en.uptodown.com/android" --max-time 60 "$vurl" -o /tmp/utov.html
+              curl -sL -A "$UA" -e "https://github-android.en.uptodown.com/android/versions" --max-time 60 "$vurl" -o /tmp/utov.html
               dbg "version page size: $(stat -c%s /tmp/utov.html 2>/dev/null || echo 0)"
+              grep -oE 'https://dw\.uptodown\.com[^"]*' /tmp/utov.html | head -3 | while read -r l; do dbg "  dw: $l"; done
               u=$(grep -oE 'https://dw\.uptodown\.com[^"]+' /tmp/utov.html | head -1)
-              dbg "dw link: $u"
               trydl uptodown-api "$u" "$vurl" || true
             fi
           fi
@@ -226,11 +229,13 @@ jobs:
               [...new Set(dwm)].slice(0, 10).forEach(x => log('  html-dw: ' + x));
               const btnHtml = await page.$$eval('button', els => els.map(e => e.outerHTML.replace(/\s+/g, ' ').slice(0, 200)).slice(0, 10));
               btnHtml.forEach(x => log('  btn: ' + x));
+              const dlBtnHtml = await page.evaluate(() => { const b = document.querySelector('#detail-download-button'); return b ? b.outerHTML.replace(/\s+/g, ' ') : 'NOT FOUND'; });
+              log('  detail-download-button FULL: ' + dlBtnHtml.slice(0, 800));
               // dump inline script snippets mentioning download
               const scripts = await page.$$eval('script:not([src])', els => els.map(e => (e.textContent || '').slice(0, 3000)).filter(t => /dw\.uptodown|download/i.test(t)).slice(0, 3));
               scripts.forEach(t => log('  script: ' + t.replace(/\s+/g, ' ').slice(0, 500)));
 
-              const btn = page.locator('button:has-text("Download"), #button-download-free, a:has-text("Download")').first();
+              const btn = page.locator('#detail-download-button').first();
               if (await btn.count() > 0) {
                 log('clicking download button (native click)');
                 const dlP = page.waitForEvent('download', { timeout: 45000 }).catch(() => null);
@@ -251,6 +256,8 @@ jobs:
 
               log('--- all network requests (filtered):');
               allReqs.filter(u => /download|dwn|\.apk|\.xapk|api|json/i.test(u)).slice(0, 40).forEach(u => log('  ' + u.slice(0, 220)));
+              log('--- all requests after click (unfiltered, last 30):');
+              allReqs.slice(-30).forEach(u => log('  R: ' + u.slice(0, 200)));
               const dw = allReqs.map(u => u.replace(/^\w+ /, '')).find(u => /dw\.uptodown|dwn\//i.test(u));
               if (!fs.existsSync('github-app-file') && dw && !fs.existsSync('candidate-url.txt')) {
                 fs.writeFileSync('candidate-url.txt', dw);
