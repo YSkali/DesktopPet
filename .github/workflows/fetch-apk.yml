@@ -25,158 +25,138 @@ jobs:
             echo "mode=fetch" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Download APK from mirrors
+      - name: Setup Playwright
         if: steps.decide.outputs.mode == 'fetch'
         run: |
-          set +e
-          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-          ok=0
+          npm install playwright@1.49.0 --no-save 2>&1 | tail -1
+          npx playwright install chromium --with-deps 2>&1 | tail -3
+
+      - name: Browser download attempt
+        if: steps.decide.outputs.mode == 'fetch'
+        run: |
+          cat > /tmp/dl.js << 'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
+          const log = (m) => { console.log(m); fs.appendFileSync('diag.txt', m + '\n'); };
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const ctx = await browser.newContext({ userAgent: UA, acceptDownloads: true, locale: 'en-US' });
+            const page = await ctx.newPage();
+
+            // ---- Uptodown ----
+            try {
+              log('=== UPTODOWN BROWSER ===');
+              await page.goto('https://github-android.en.uptodown.com/android/download', { waitUntil: 'domcontentloaded', timeout: 60000 });
+              await page.waitForTimeout(3000);
+              log('title: ' + (await page.title()));
+              const sels = ['#button-download-free', 'button:has-text("Download")', 'a:has-text("Download")', '[data-url*="download"]'];
+              let btn = null;
+              for (const s of sels) {
+                const el = page.locator(s).first();
+                if (await el.count() > 0) { btn = el; log('button found: ' + s); break; }
+              }
+              if (btn) {
+                const dlPromise = page.waitForEvent('download', { timeout: 45000 }).catch(e => { log('no dl event: ' + String(e.message).split('\n')[0]); return null; });
+                await btn.click().catch(e => log('click err: ' + String(e.message).split('\n')[0]));
+                const dl = await dlPromise;
+                if (dl) {
+                  log('DOWNLOAD EVENT filename=' + dl.suggestedFilename());
+                  await dl.saveAs('github-app-file');
+                  log('saved github-app-file');
+                } else {
+                  log('url after click: ' + page.url());
+                  fs.writeFileSync('candidate-url.txt', page.url());
+                }
+              } else { log('no button found'); }
+            } catch (e) { log('uptodown err: ' + String(e.message).split('\n')[0]); }
+
+            // ---- APKMirror ----
+            if (!fs.existsSync('github-app-file')) {
+              try {
+                log('=== APKMIRROR BROWSER ===');
+                await page.goto('https://www.apkmirror.com/apk/github-inc/github/', { waitUntil: 'domcontentloaded', timeout: 60000 });
+                await page.waitForTimeout(3000);
+                log('title: ' + (await page.title()));
+                const rel = page.locator('a[href*="/apk/github-inc/github/"]:has-text("GitHub")').first();
+                if (await rel.count() > 0) {
+                  log('release link: ' + (await rel.getAttribute('href')));
+                  await rel.click();
+                  await page.waitForTimeout(3000);
+                  log('on release page: ' + page.url());
+                  const dlbtn = page.locator('a:has-text("Download APK"), a.downloadButton, a[href*="/download/"]').first();
+                  if (await dlbtn.count() > 0) {
+                    const dlPromise = page.waitForEvent('download', { timeout: 60000 }).catch(e => { log('no dl event: ' + String(e.message).split('\n')[0]); return null; });
+                    await dlbtn.click().catch(e => log('click err: ' + String(e.message).split('\n')[0]));
+                    await page.waitForTimeout(8000);
+                    log('apkmirror url now: ' + page.url());
+                    const dl2 = await dlPromise;
+                    if (dl2) {
+                      log('DOWNLOAD EVENT filename=' + dl2.suggestedFilename());
+                      await dl2.saveAs('github-app-file');
+                      log('saved github-app-file');
+                    } else {
+                      const here = page.locator('a:has-text("here"), a:has-text("Download"), #download-file').first();
+                      if (await here.count() > 0) {
+                        const p2 = page.waitForEvent('download', { timeout: 60000 }).catch(() => null);
+                        await here.click().catch(() => {});
+                        const dl3 = await p2;
+                        if (dl3) { log('DL3 filename=' + dl3.suggestedFilename()); await dl3.saveAs('github-app-file'); }
+                      }
+                    }
+                  } else { log('no download button on release page'); }
+                } else { log('no release link'); }
+              } catch (e) { log('apkmirror err: ' + String(e.message).split('\n')[0]); }
+            }
+
+            await browser.close();
+            log('=== BROWSER DONE ===');
+          })().catch(e => { log('FATAL: ' + e.message); process.exit(1); });
+          EOF
           : > diag.txt
+          node /tmp/dl.js 2>&1 | tee -a diag.txt
+          exit 0
+
+      - name: Process downloaded file
+        if: always() && steps.decide.outputs.mode == 'fetch'
+        run: |
+          set +e
           dbg() { echo "$@" | tee -a diag.txt; }
-
-          try_download() {
-            # $1 = source name, $2 = url
-            local src="$1" url="$2"
-            dbg "--- trying $src: $url"
-            local code
-            code=$(curl -sL -A "$UA" --max-time 300 -o github.apk -w "%{http_code}" "$url")
-            local magic=$(head -c 2 github.apk 2>/dev/null)
-            local size=$(stat -c%s github.apk 2>/dev/null || echo 0)
-            dbg "    http=$code magic=$magic size=$size"
-            if [ "$magic" = "PK" ] && [ "$size" -gt 10000000 ]; then
-              mv github.apk "GitHub-Android-${src}.apk"
-              ok=1; src_used="$src"
-              dbg "    SUCCESS from $src ($size bytes)"
-              return 0
+          dbg "--- processing ---"
+          # retry candidate url via curl if browser navigated instead of downloading
+          if [ ! -f github-app-file ] && [ -f candidate-url.txt ]; then
+            u=$(cat candidate-url.txt)
+            dbg "retrying via curl: $u"
+            code=$(curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" --max-time 300 -o github-app-file -w "%{http_code}" "$u")
+            dbg "curl result: http=$code size=$(stat -c%s github-app-file 2>/dev/null)"
+          fi
+          if [ -f github-app-file ]; then
+            magic=$(head -c 2 github-app-file)
+            size=$(stat -c%s github-app-file)
+            dbg "file: magic=$magic size=$size"
+            if [ "$magic" = "PK" ]; then
+              if unzip -l github-app-file 2>/dev/null | grep -q " manifest.json"; then
+                dbg "XAPK detected - extracting"
+                rm -rf xapk && mkdir xapk
+                unzip -o -q github-app-file -d xapk
+                ls -la xapk/ | head -20 | while read -r l; do dbg "  $l"; done
+                base=$(cd xapk && ls -S *.apk 2>/dev/null | head -1)
+                dbg "base apk: $base ($(stat -c%s xapk/$base 2>/dev/null) bytes)"
+                if [ -n "$base" ]; then
+                  cp "xapk/$base" "GitHub-Android-from-xapk.apk"
+                  cp github-app-file "GitHub-Android-full.xapk"
+                fi
+              else
+                dbg "plain APK"
+                cp github-app-file "GitHub-Android-direct.apk"
+              fi
+            else
+              dbg "NOT a zip/apk - first bytes: $(head -c 100 github-app-file | tr -d '\n')"
             fi
-            rm -f github.apk
-            return 1
-          }
-
-          # ---- Source 1: Aptoide API ----
-          dbg "=== SOURCE 1: Aptoide API ==="
-          apt_json=$(curl -sL -A "$UA" --max-time 60 "https://ws75.aptoide.com/api/7/app/get/package_name=com.github.android")
-          dbg "aptoide resp head: $(echo "$apt_json" | head -c 500)"
-          apt_url=$(echo "$apt_json" | python3 -c "import json,sys
-          try:
-            d=json.load(sys.stdin)
-            n=d.get('nodes',{}).get('meta',{}).get('data',{})
-            print(n.get('file',{}).get('path',''))
-          except Exception:
-            print('')")
-          dbg "aptoide url: $apt_url"
-          [ -n "$apt_url" ] && try_download aptoide "$apt_url"
-
-          # ---- Source 2: APKPure CDN ----
-          if [ "$ok" != "1" ]; then
-            dbg "=== SOURCE 2: APKPure CDN ==="
-            try_download apkpure "https://d.apkpure.com/b/APK/com.github.android?version=latest"
+          else
+            dbg "NO FILE DOWNLOADED"
+            cp diag.txt DIAGNOSTICS.txt
           fi
-
-          # ---- Source 3: APKPure page-scrape ----
-          if [ "$ok" != "1" ]; then
-            dbg "=== SOURCE 3: APKPure page ==="
-            curl -sL -A "$UA" -c /tmp/apk.ck -b /tmp/apk.ck --max-time 60 \
-              "https://apkpure.net/github/com.github.android/download" -o /tmp/apkpure.html
-            dbg "page size: $(stat -c%s /tmp/apkpure.html 2>/dev/null || echo 0) head: $(head -c 200 /tmp/apkpure.html | tr -d '\n')"
-            pure_url=$(grep -oE 'https://d\.apkpure\.com/[^"'"'"' ]+' /tmp/apkpure.html | head -1)
-            dbg "extracted: $pure_url"
-            [ -n "$pure_url" ] && try_download apkpure_page "$pure_url"
-          fi
-
-          # ---- Source 4: APKCombo ----
-          if [ "$ok" != "1" ]; then
-            dbg "=== SOURCE 4: APKCombo ==="
-            curl -sL -A "$UA" --max-time 60 \
-              "https://apkcombo.com/github/com.github.android/download-apk/" -o /tmp/combo.html
-            dbg "page size: $(stat -c%s /tmp/combo.html 2>/dev/null || echo 0) head: $(head -c 200 /tmp/combo.html | tr -d '\n')"
-            combo_url=$(grep -oE 'https://[^"]+\.apk[^"]*' /tmp/combo.html | grep -viE 'icon|sprite' | head -1)
-            dbg "extracted: $combo_url"
-            [ -n "$combo_url" ] && try_download apkcombo "$combo_url"
-          fi
-
-          # ---- Source 5: Uptodown (with retries) ----
-          if [ "$ok" != "1" ]; then
-            dbg "=== SOURCE 5: Uptodown ==="
-            for attempt in 1 2 3 4 5; do
-              curl -sL -A "$UA" -c /tmp/uto.ck -b /tmp/uto.ck --max-time 60 \
-                "https://github-android.en.uptodown.com/android/download" -o /tmp/uto.html
-              sz=$(stat -c%s /tmp/uto.html 2>/dev/null || echo 0)
-              dbg "attempt $attempt: size=$sz"
-              [ "$sz" -gt 100000 ] && break
-              dbg "  small resp content: $(head -c 200 /tmp/uto.html | tr -d '\n')"
-              sleep 5
-            done
-            dbg "--- uptodown deep dive ---"
-            grep -oE '"[^"]*\.(x?apk)[^"]*"' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "   xapkref: $l"; done
-            grep -oE 'data-url="[^"]+"' /tmp/uto.html | sort -u | head -10 | while read -r l; do dbg "   data-url: $l"; done
-            grep -oE '<a[^>]+class="[^"]*download[^"]*"[^>]*>' /tmp/uto.html | head -10 | while read -r l; do dbg "   anchor: $(echo "$l" | head -c 250)"; done
-            grep -oE '(https:)?//[a-z0-9.-]*(uptodown|dw\.)[^"'"'"' ]*' /tmp/uto.html | grep -iE 'dl|down' | sort -u | head -15 | while read -r l; do dbg "   dlref: $l"; done
-            # try fetching the plain /download page too
-            curl -sL -A "$UA" -c /tmp/uto.ck -b /tmp/uto.ck --max-time 60 \
-              "https://github-android.en.uptodown.com/download" -o /tmp/uto2.html
-            dbg "/download page size: $(stat -c%s /tmp/uto2.html 2>/dev/null || echo 0)"
-            grep -oE 'data-url="[^"]+"' /tmp/uto2.html | sort -u | head -10 | while read -r l; do dbg "   dl2 data-url: $l"; done
-            # deep dump of /download page scripts
-            dbg "-- uto2 head: $(head -c 250 /tmp/uto2.html | tr -d '\n')"
-            dbg "-- dw.uptodown refs in uto2:"
-            grep -oE 'https://dw\.uptodown\.com[^"'"'"' )]*' /tmp/uto2.html | head -5 | while read -r l; do dbg "   $l"; done
-            dbg "-- 'dwn' contexts in uto2:"
-            grep -oE '.{60}dwn.{100}' /tmp/uto2.html | head -5 | while read -r l; do dbg "   $l"; done
-            dbg "-- install/dl url vars in uto2:"
-            grep -oE '(url|href|link)[\"'"'"' ]*[:=][\"'"'"' ]*https?://[^\"'"'"' ]{10,120}' /tmp/uto2.html | grep -iE 'dwn|dl\.|download' | head -8 | while read -r l; do dbg "   $l"; done
-            # try AJAX endpoint
-            ajax=$(curl -s -A "$UA" -b /tmp/uto.ck -c /tmp/uto.ck --max-time 60 \
-              -H "X-Requested-With: XMLHttpRequest" -H "Accept: application/json" \
-              "https://github-android.en.uptodown.com/download")
-            dbg "-- ajax /download resp head: $(echo "$ajax" | head -c 500)"
-            aj_url=$(echo "$ajax" | grep -oE 'https://[^"]+\.x?apk[^"]*' | head -1)
-            [ -z "$aj_url" ] && aj_url=$(echo "$ajax" | python3 -c "import json,sys
-          try:
-            d=json.load(sys.stdin)
-            print(d.get('url') or d.get('data',{}).get('url') or d.get('downloadUrl') or '')
-          except Exception:
-            print('')" 2>/dev/null)
-            dbg "ajax url: $aj_url"
-            [ -n "$aj_url" ] && try_download uptodown "$aj_url"
-            uto_url=$(grep -hoE '(https:)?//[^"'"'"' ]*\.x?apk[^"'"'"' ]*' /tmp/uto.html /tmp/uto2.html | grep -i uptodown | head -1)
-            dbg "extracted direct: $uto_url"
-            [ -n "$uto_url" ] && try_download uptodown "$uto_url"
-          fi
-
-          # ---- Source 7: Chinese stores probe ----
-          if [ "$ok" != "1" ]; then
-            dbg "=== SOURCE 7: Chinese stores ==="
-            for cu in "https://sj.qq.com/appdetail/com.github.android" "https://app.mi.com/details?id=com.github.android" "https://shouji.baidu.com/detail?appname=com.github.android" "https://www.wandoujia.com/search?key=github"; do
-              csz=$(curl -sL -A "$UA" --max-time 40 "$cu" -o /tmp/cn.html -w "%{http_code}:%{size_download}")
-              dbg "  $cu -> $csz title: $(grep -oiE '<title>[^<]*' /tmp/cn.html | head -1 | head -c 80)"
-            done
-          fi
-
-          # ---- Source 8: apksos deep ----
-          if [ "$ok" != "1" ]; then
-            dbg "=== SOURCE 8: apksos ==="
-            curl -sL -A "$UA" --max-time 60 "https://apksos.com/app/com.github.android" -o /tmp/sos.html
-            dbg "page size: $(stat -c%s /tmp/sos.html 2>/dev/null || echo 0)"
-            dbg "title: $(grep -oiE '<title>[^<]*' /tmp/sos.html | head -1)"
-            grep -oE '<a[^>]+href="[^"]+"[^>]*>' /tmp/sos.html | grep -iE 'download|\.apk' | head -8 | while read -r l; do dbg "   anchor: $(echo "$l" | head -c 250)"; done
-            grep -oE 'https://[^"'"'"' ]*\.apk[^"'"'"' ]*' /tmp/sos.html | head -5 | while read -r l; do dbg "   apkref: $l"; done
-            sos_url=$(grep -oE 'https://[^"]*\.apk[^"]*' /tmp/sos.html | head -1)
-            [ -n "$sos_url" ] && try_download apksos "$sos_url"
-          fi
-
-          # ---- Source 6: APKFab ----
-          if [ "$ok" != "1" ]; then
-            dbg "=== SOURCE 6: APKFab ==="
-            curl -sL -A "$UA" --max-time 60 "https://apkfab.com/github/com.github.android" -o /tmp/fab.html
-            dbg "page size: $(stat -c%s /tmp/fab.html 2>/dev/null || echo 0) head: $(head -c 200 /tmp/fab.html | tr -d '\n')"
-            fab_url=$(grep -oE 'https://[^"]+\.apk[^"]*' /tmp/fab.html | grep -viE 'icon|sprite' | head -1)
-            dbg "extracted: $fab_url"
-            [ -n "$fab_url" ] && try_download apkfab "$fab_url"
-          fi
-
-          dbg "=== FINAL: ok=$ok ==="
-          if [ "$ok" != "1" ]; then cp diag.txt DIAGNOSTICS.txt; fi
           exit 0
 
       - name: Create release (APK or diagnostics)
@@ -184,9 +164,8 @@ jobs:
         run: |
           set +e
           gh release delete apk-tmp --repo YSkali/DesktopPet --yes --cleanup-tag 2>/dev/null
-          if ls GitHub-Android-*.apk >/dev/null 2>&1; then
-            f=$(ls GitHub-Android-*.apk)
-            gh release create apk-tmp --repo YSkali/DesktopPet "$f" \
+          if ls GitHub-Android-*.apk GitHub-Android-*.xapk >/dev/null 2>&1; then
+            gh release create apk-tmp --repo YSkali/DesktopPet GitHub-Android-*.apk GitHub-Android-*.xapk \
               --title "GitHub for Android APK (temp)" \
               --notes "Auto-fetched installer for personal use. Safe to delete."
           elif [ -f DIAGNOSTICS.txt ]; then
