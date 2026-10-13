@@ -44,10 +44,17 @@ jobs:
             rm -f github-app-file; return 1
           }
 
-          # ---- APKPure CDN direct ----
+          # ---- APKPure CDN direct (apkeep trick: official client UA) ----
           if [ ! -f github-app-file ]; then
             dbg "=== d.apkpure.com ==="
-            trydl apkpure-cdn "https://d.apkpure.com/b/APK/com.github.android?version=latest" "https://apkpure.net/" || true
+            for PUR_UA in "APKPure/3.19.39 (Aegon)" "APKPure/3.20.16 (Aegon)" "Dalvik/2.1.0 (Linux; U; Android 13; Pixel 7 Build/TQ3A.230805.001)"; do
+              code=$(curl -sL -A "$PUR_UA" -H "Accept: */*" --max-time 300 -o github-app-file -w "%{http_code}" "https://d.apkpure.com/b/APK/com.github.android?version=latest")
+              sz=$(stat -c%s github-app-file 2>/dev/null || echo 0)
+              mg=$(head -c 2 github-app-file 2>/dev/null)
+              dbg "apkpure-cdn UA=[$PUR_UA] http=$code size=$sz magic=$mg"
+              if [ "$mg" = "PK" ] && [ "$sz" -gt 10000000 ]; then break; fi
+              rm -f github-app-file
+            done
           fi
 
           # ---- APKCombo ----
@@ -66,7 +73,7 @@ jobs:
             dbg "=== apksos ==="
             curl -sL -A "$UA" --max-time 60 "https://apksos.com/app/com.github.android" -o /tmp/sos.html
             dbg "page size: $(stat -c%s /tmp/sos.html 2>/dev/null || echo 0)"
-            grep -oE 'href="[^"]*"' /tmp/sos.html | grep -iE 'download|\.apk' | sort -u | head -8 | while read -r l; do dbg "  link: $l"; done
+            grep -oE '(href|action|src)="[^"]*"' /tmp/sos.html | grep -viE '\.(css|js|png|jpg|ico|svg)|fonts|google|facebook' | sort -u | head -25 | while read -r l; do dbg "  link: $l"; done
             u=$(grep -oE 'https://[^"'"'"' ]+\.apk(\?[^"'"'"' ]*)?' /tmp/sos.html | grep -viE 'icon|logo' | head -1)
             [ -z "$u" ] && u=$(grep -oE 'href="[^"]*download[^"]*"' /tmp/sos.html | head -1 | sed 's/href="//;s/"//')
             case "$u" in http*) ;; /*) u="https://apksos.com$u";; esac
