@@ -35,101 +35,112 @@ jobs:
         if: steps.decide.outputs.mode == 'fetch'
         run: |
           cat > dl-browser.js << 'EOF'
-          const { chromium } = require('playwright');
-          const fs = require('fs');
-          const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
-          const log = (m) => { console.log(m); fs.appendFileSync('diag.txt', m + '\n'); };
-          (async () => {
-            const browser = await chromium.launch({ headless: true });
-            const ctx = await browser.newContext({ userAgent: UA, acceptDownloads: true, locale: 'en-US' });
-            const page = await ctx.newPage();
+const { chromium } = require('playwright');
+const fs = require('fs');
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
+const log = (m) => { console.log(m); fs.appendFileSync('diag.txt', m + '\n'); };
 
-            // ---- Uptodown ----
-            try {
-              log('=== UPTODOWN BROWSER ===');
-              await page.goto('https://github-android.en.uptodown.com/android/download', { waitUntil: 'domcontentloaded', timeout: 60000 });
-              await page.waitForTimeout(3000);
-              log('title: ' + (await page.title()));
-              const sels = ['#button-download-free', 'button:has-text("Download")', 'a:has-text("Download")', '[data-url*="download"]'];
-              let btn = null;
-              for (const s of sels) {
-                const el = page.locator(s).first();
-                if (await el.count() > 0) { btn = el; log('button found: ' + s); break; }
-              }
-              if (btn) {
-                const dlPromise = page.waitForEvent('download', { timeout: 45000 }).catch(e => { log('no dl event: ' + String(e.message).split('\n')[0]); return null; });
-                await btn.click().catch(e => log('click err: ' + String(e.message).split('\n')[0]));
-                const dl = await dlPromise;
-                if (dl) {
-                  log('DOWNLOAD EVENT filename=' + dl.suggestedFilename());
-                  await dl.saveAs('github-app-file');
-                  log('saved github-app-file');
-                } else {
-                  log('url after click: ' + page.url());
-                  fs.writeFileSync('candidate-url.txt', page.url());
-                }
-              } else { log('no button found'); }
-            } catch (e) { log('uptodown err: ' + String(e.message).split('\n')[0]); }
+function verNum(t) {
+  const m = String(t).match(/(\d+\.\d+(?:\.\d+)?)/);
+  if (!m) return 0;
+  return m[1].split('.').reduce((a, b, i) => a + parseInt(b) * Math.pow(1000, 2 - i), 0);
+}
 
-            // ---- APKMirror ----
-            if (!fs.existsSync('github-app-file')) {
-              try {
-                log('=== APKMIRROR BROWSER ===');
-                await page.goto('https://www.apkmirror.com/apk/github-inc/github/', { waitUntil: 'domcontentloaded', timeout: 60000 });
-                await page.waitForTimeout(5000);
-                log('title: ' + (await page.title()));
-                log('page text head: ' + (await page.locator('body').innerText()).slice(0, 200).replace(/\n/g, ' '));
-                const links = await page.$$eval('a[href*="/apk/github-inc/github/"]', els => els.slice(0, 15).map(e => e.getAttribute('href') + ' || ' + e.textContent.trim().replace(/\s+/g, ' ').slice(0, 70)));
-                links.forEach(l => log('link: ' + l));
-                const relHref = await page.evaluate(() => {
-                  const as = [...document.querySelectorAll('a[href*="release"]')];
-                  return as.length ? as[0].href : null;
-                });
-                log('relHref: ' + relHref);
-                if (relHref) {
-                  await page.goto(relHref, { waitUntil: 'domcontentloaded', timeout: 60000 });
-                  await page.waitForTimeout(4000);
-                  log('release page: ' + page.url());
-                  const anchors = await page.$$eval('a', els => els.map(e => (e.getAttribute('href') || '') + ' || ' + e.textContent.trim().replace(/\s+/g, ' ').slice(0, 50)).filter(t => /download/i.test(t)).slice(0, 15));
-                  anchors.forEach(l => log('  dl-anchor: ' + l));
-                  const dlHref = await page.evaluate(() => {
-                    const as = [...document.querySelectorAll('a[href*="/download/"]')];
-                    return as.length ? as[0].href : null;
-                  });
-                  log('dlHref: ' + dlHref);
-                  if (dlHref) {
-                    await page.goto(dlHref, { waitUntil: 'domcontentloaded', timeout: 60000 });
-                    await page.waitForTimeout(4000);
-                    log('download page: ' + page.url());
-                    const anchors2 = await page.$$eval('a', els => els.map(e => (e.getAttribute('href') || '') + ' || ' + e.textContent.trim().replace(/\s+/g, ' ').slice(0, 50)).filter(t => /\.apk|download|here/i.test(t)).slice(0, 15));
-                    anchors2.forEach(l => log('  dlpage-anchor: ' + l));
-                    const finalSel = await page.evaluate(() => {
-                      const as = [...document.querySelectorAll('a')].filter(a => /\.apk/i.test(a.href || '') || /here/i.test(a.textContent || ''));
-                      return as.length ? as[0].href : null;
-                    });
-                    log('finalSel: ' + finalSel);
-                    if (finalSel) {
-                      const p2 = page.waitForEvent('download', { timeout: 90000 }).catch(e => { log('dl event err: ' + String(e.message).split('\n')[0]); return null; });
-                      await page.goto(finalSel, { timeout: 90000 }).catch(e => log('goto final err: ' + String(e.message).split('\n')[0]));
-                      const dl3 = await p2;
-                      if (dl3) {
-                        log('DL3 filename=' + dl3.suggestedFilename());
-                        await dl3.saveAs('github-app-file');
-                        log('saved');
-                      } else {
-                        fs.writeFileSync('candidate-url.txt', finalSel);
-                        log('saved candidate url: ' + finalSel);
-                      }
-                    }
-                  }
-                }
-              } catch (e) { log('apkmirror err: ' + String(e.message).split('\n')[0]); }
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const ctx = await browser.newContext({ userAgent: UA, acceptDownloads: true, locale: 'en-US' });
+  const page = await ctx.newPage();
+
+  // collect interesting requests
+  const hits = [];
+  page.on('request', r => {
+    const u = r.url();
+    if (/\.apk(\?|$)|\.xapk(\?|$)|dw\.uptodown|download\.php|\.apk\?/i.test(u)) {
+      hits.push(u);
+    }
+  });
+
+  // ---- Uptodown ----
+  try {
+    log('=== UPTODOWN BROWSER ===');
+    await page.goto('https://github-android.en.uptodown.com/android/download', { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.waitForTimeout(4000);
+    log('title: ' + (await page.title()));
+    const sels = ['#button-download-free', 'button:has-text("Download")', 'a:has-text("Download")', '[data-url*="download"]'];
+    for (const sel of sels) {
+      const el = page.locator(sel).first();
+      if (await el.count() > 0) {
+        log('clicking: ' + sel);
+        const dlP = page.waitForEvent('download', { timeout: 20000 }).catch(() => null);
+        await el.click().catch(e => log('click err: ' + String(e.message).split('\n')[0]));
+        const dl = await dlP;
+        if (dl) {
+          log('DOWNLOAD EVENT: ' + dl.suggestedFilename());
+          await dl.saveAs('github-app-file');
+          break;
+        }
+        await page.waitForTimeout(5000);
+      }
+    }
+    hits.forEach(h => log('  net-hit: ' + h.slice(0, 250)));
+    const dw = hits.find(h => /dw\.uptodown/i.test(h)) || hits[0];
+    if (!fs.existsSync('github-app-file') && dw) {
+      fs.writeFileSync('candidate-url.txt', dw);
+      log('candidate: ' + dw);
+    }
+  } catch (e) { log('uptodown err: ' + String(e.message).split('\n')[0]); }
+
+  // ---- APKMirror ----
+  if (!fs.existsSync('github-app-file')) {
+    try {
+      log('=== APKMIRROR BROWSER ===');
+      hits.length = 0;
+      await page.goto('https://www.apkmirror.com/apk/github-inc/github/', { waitUntil: 'domcontentloaded', timeout: 60000 });
+      await page.waitForTimeout(5000);
+      log('title: ' + (await page.title()));
+      // pick newest release by version number
+      const rels = await page.evaluate(() => [...document.querySelectorAll('a[href*="release"]')]
+        .map(a => ({ href: a.href, text: a.textContent.trim().replace(/\s+/g, ' ') })));
+      rels.slice(0, 20).forEach(r => log('  rel: ' + r.text.slice(0, 60) + ' => ' + r.href));
+      let best = null, bestV = 0;
+      for (const r of rels) {
+        if (!/-release\/?/.test(r.href) || r.href.includes('#')) continue;
+        const v = verNum(r.text) || verNum(r.href);
+        if (v > bestV) { bestV = v; best = r.href; }
+      }
+      log('best release: ' + best + ' (v=' + bestV + ')');
+      if (best) {
+        await page.goto(best, { waitUntil: 'domcontentloaded', timeout: 60000 });
+        await page.waitForTimeout(4000);
+        log('release page: ' + page.url());
+        // click the big DOWNLOAD button (href=#file)
+        const dlBtn = page.locator('a[href="#file"]').first();
+        if (await dlBtn.count() > 0) {
+          log('clicking #file download button');
+          const dlP = page.waitForEvent('download', { timeout: 30000 }).catch(() => null);
+          await dlBtn.click().catch(e => log('click err: ' + String(e.message).split('\n')[0]));
+          const dl = await dlP;
+          if (dl) {
+            log('DOWNLOAD EVENT: ' + dl.suggestedFilename());
+            await dl.saveAs('github-app-file');
+          } else {
+            await page.waitForTimeout(8000);
+            hits.forEach(h => log('  net-hit: ' + h.slice(0, 250)));
+            const cand = hits.find(h => /download\.php/i.test(h)) || hits.find(h => /\.apk/i.test(h));
+            if (cand) {
+              fs.writeFileSync('candidate-url.txt', cand);
+              log('candidate: ' + cand);
             }
+          }
+        } else { log('no #file button'); }
+      }
+    } catch (e) { log('apkmirror err: ' + String(e.message).split('\n')[0]); }
+  }
 
-            await browser.close();
-            log('=== BROWSER DONE ===');
-          })().catch(e => { log('FATAL: ' + e.message); process.exit(1); });
-          EOF
+  await browser.close();
+  log('=== BROWSER DONE ===');
+})().catch(e => { log('FATAL: ' + e.message); process.exit(1); });
+EOF
           : > diag.txt
           node dl-browser.js 2>&1 | tee -a diag.txt
           exit 0
@@ -144,7 +155,8 @@ jobs:
           if [ ! -f github-app-file ] && [ -f candidate-url.txt ]; then
             u=$(cat candidate-url.txt)
             dbg "retrying via curl: $u"
-            code=$(curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" --max-time 300 -o github-app-file -w "%{http_code}" "$u")
+            ref=$(echo "$u" | sed -E 's#(https://[^/]+).*#\1#')
+            code=$(curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" -e "$ref/" --max-time 300 -o github-app-file -w "%{http_code}" "$u")
             dbg "curl result: http=$code size=$(stat -c%s github-app-file 2>/dev/null)"
           fi
           if [ -f github-app-file ]; then
