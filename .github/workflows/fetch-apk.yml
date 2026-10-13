@@ -34,7 +34,7 @@ jobs:
       - name: Browser download attempt
         if: steps.decide.outputs.mode == 'fetch'
         run: |
-          cat > /tmp/dl.js << 'EOF'
+          cat > dl-browser.js << 'EOF'
           const { chromium } = require('playwright');
           const fs = require('fs');
           const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
@@ -114,7 +114,7 @@ jobs:
           })().catch(e => { log('FATAL: ' + e.message); process.exit(1); });
           EOF
           : > diag.txt
-          node /tmp/dl.js 2>&1 | tee -a diag.txt
+          node dl-browser.js 2>&1 | tee -a diag.txt
           exit 0
 
       - name: Process downloaded file
