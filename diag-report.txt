@@ -1,2 +1,208 @@
+=== apkmonk ===
+page size: 0
+dl page: 
+=== malavida ===
+page size: 105349
+dl page: https://imag.malavida.com/mvimgbig/download-fs/github-28707-1.jpg
+dl page size: 132324
+malavida: no url
+=== apk.support ===
+page size: 5648
+apksupport: no url
+=== apkfab ===
+page size: 5635
+apkfab: no url
+=== uptodown curl ===
+page size: 156611
+dw url: 
+uptodown: no url
+=== UPTODOWN BROWSER ===
+=== UPTODOWN BROWSER ===
+cf passed: true title: Download GitHub 1.280.0 for Android | Uptodown.com
+cf passed: true title: Download GitHub 1.280.0 for Android | Uptodown.com
+-- initial buttons/links:
+   eFootball PES 2027  https://pes-2017.en.uptodown.com/android
+   RoS: Legacy  https://ros-legacy.en.uptodown.com/android
+   Where Winds Meet  https://where-winds-meet-global.en.uptodown.com/android
+   MOBA  https://en.uptodown.com/android/moba
+   Talking Tom: Gold Run  https://talking-tom-gold-run.en.uptodown.com/android
+   TFT: Teamfight Tactics  https://teamfight-tactics-league-of-legends-strategy-game.en.uptodown.com/androi
+-- initial buttons/links:
+   eFootball PES 2027  https://pes-2017.en.uptodown.com/android
+   RoS: Legacy  https://ros-legacy.en.uptodown.com/android
+   Where Winds Meet  https://where-winds-meet-global.en.uptodown.com/android
+   MOBA  https://en.uptodown.com/android/moba
+   Talking Tom: Gold Run  https://talking-tom-gold-run.en.uptodown.com/android
+   TFT: Teamfight Tactics  https://teamfight-tactics-league-of-legends-strategy-game.en.uptodown.com/androi
+   AI Agents  https://en.uptodown.com/android/ai-agents
+   Kwai Lite  https://kwai-lite.en.uptodown.com/android
+   Daiblos Core  https://daiblos-core.en.uptodown.com/android
+   Best Games like Grand Theft Auto VI  https://en.uptodown.com/android/games-like-grand-theft-auto
+   Blood Strike  https://projectbloodstrike.en.uptodown.com/android
+   AZAR - Video Chat  https://azar-random-video-chat.en.uptodown.com/android
+   AI Agents  https://en.uptodown.com/android/ai-agents
+   Kwai Lite  https://kwai-lite.en.uptodown.com/android
+   Daiblos Core  https://daiblos-core.en.uptodown.com/android
+   Best Games like Grand Theft Auto VI  https://en.uptodown.com/android/games-like-grand-theft-auto
+   Blood Strike  https://projectbloodstrike.en.uptodown.com/android
+   AZAR - Video Chat  https://azar-random-video-chat.en.uptodown.com/android
+   Open-Source Apps  https://en.uptodown.com/android/open-source-apps
+   Open-Source Apps  https://en.uptodown.com/android/open-source-apps
+   Spotify  https://spotify.en.uptodown.com/android
+   Spotify  https://spotify.en.uptodown.com/android
+   Coin Master  https://coin-master.en.uptodown.com/android
+   Coin Master  https://coin-master.en.uptodown.com/android
+     https://en.uptodown.com
+     https://en.uptodown.com
+   Android  https://en.uptodown.com
+   Android  https://en.uptodown.com
+   Apps  
+   Apps  
+   Productivity  https://en.uptodown.com/android/productivity
+   Productivity  https://en.uptodown.com/android/productivity
+   Personal  https://en.uptodown.com/android/personal
+   Personal  https://en.uptodown.com/android/personal
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub #author-link 
+   GitHub #author-link 
+   GitHub  https://play.google.com/store/apps/details?id=com.github.android
+   GitHub  https://play.google.com/store/apps/details?id=com.github.android
+   Personal  https://en.uptodown.com/android/personal
+   Personal  https://en.uptodown.com/android/personal
+round 0 clicking: button:has-text("Download")
+round 0 clicking: button:has-text("Download")
+url now: https://github-android.en.uptodown.com/android/download
+url now: https://github-android.en.uptodown.com/android/download
+-- round0 buttons/links:
+-- round0 buttons/links:
+   eFootball PES 2027  https://pes-2017.en.uptodown.com/android
+   RoS: Legacy  https://ros-legacy.en.uptodown.com/android
+   Where Winds Meet  https://where-winds-meet-global.en.uptodown.com/android
+   eFootball PES 2027  https://pes-2017.en.uptodown.com/android
+   RoS: Legacy  https://ros-legacy.en.uptodown.com/android
+   Where Winds Meet  https://where-winds-meet-global.en.uptodown.com/android
+   MOBA  https://en.uptodown.com/android/moba
+   MOBA  https://en.uptodown.com/android/moba
+   Talking Tom: Gold Run  https://talking-tom-gold-run.en.uptodown.com/android
+   Talking Tom: Gold Run  https://talking-tom-gold-run.en.uptodown.com/android
+   TFT: Teamfight Tactics  https://teamfight-tactics-league-of-legends-strategy-game.en.uptodown.com/androi
+   TFT: Teamfight Tactics  https://teamfight-tactics-league-of-legends-strategy-game.en.uptodown.com/androi
+   AI Agents  https://en.uptodown.com/android/ai-agents
+   AI Agents  https://en.uptodown.com/android/ai-agents
+   Kwai Lite  https://kwai-lite.en.uptodown.com/android
+   Kwai Lite  https://kwai-lite.en.uptodown.com/android
+   Daiblos Core  https://daiblos-core.en.uptodown.com/android
+   Daiblos Core  https://daiblos-core.en.uptodown.com/android
+   Best Games like Grand Theft Auto VI  https://en.uptodown.com/android/games-like-grand-theft-auto
+   Best Games like Grand Theft Auto VI  https://en.uptodown.com/android/games-like-grand-theft-auto
+   Blood Strike  https://projectbloodstrike.en.uptodown.com/android
+   Blood Strike  https://projectbloodstrike.en.uptodown.com/android
+   AZAR - Video Chat  https://azar-random-video-chat.en.uptodown.com/android
+   AZAR - Video Chat  https://azar-random-video-chat.en.uptodown.com/android
+   Open-Source Apps  https://en.uptodown.com/android/open-source-apps
+   Open-Source Apps  https://en.uptodown.com/android/open-source-apps
+   Spotify  https://spotify.en.uptodown.com/android
+   Spotify  https://spotify.en.uptodown.com/android
+   Coin Master  https://coin-master.en.uptodown.com/android
+   Coin Master  https://coin-master.en.uptodown.com/android
+     https://en.uptodown.com
+     https://en.uptodown.com
+   Android  https://en.uptodown.com
+   Android  https://en.uptodown.com
+   Apps  
+   Apps  
+   Productivity  https://en.uptodown.com/android/productivity
+   Productivity  https://en.uptodown.com/android/productivity
+   Personal  https://en.uptodown.com/android/personal
+   Personal  https://en.uptodown.com/android/personal
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub #author-link 
+   GitHub #author-link 
+   GitHub  https://play.google.com/store/apps/details?id=com.github.android
+   GitHub  https://play.google.com/store/apps/details?id=com.github.android
+   Personal  https://en.uptodown.com/android/personal
+   Personal  https://en.uptodown.com/android/personal
+round 1 clicking: button:has-text("Download")
+round 1 clicking: button:has-text("Download")
+url now: https://github-android.en.uptodown.com/android/download
+url now: https://github-android.en.uptodown.com/android/download
+-- round1 buttons/links:
+-- round1 buttons/links:
+   eFootball PES 2027  https://pes-2017.en.uptodown.com/android
+   RoS: Legacy  https://ros-legacy.en.uptodown.com/android
+   Where Winds Meet  https://where-winds-meet-global.en.uptodown.com/android
+   MOBA  https://en.uptodown.com/android/moba
+   Talking Tom: Gold Run  https://talking-tom-gold-run.en.uptodown.com/android
+   TFT: Teamfight Tactics  https://teamfight-tactics-league-of-legends-strategy-game.en.uptodown.com/androi
+   AI Agents  https://en.uptodown.com/android/ai-agents
+   Kwai Lite  https://kwai-lite.en.uptodown.com/android
+   Daiblos Core  https://daiblos-core.en.uptodown.com/android
+   Best Games like Grand Theft Auto VI  https://en.uptodown.com/android/games-like-grand-theft-auto
+   Blood Strike  https://projectbloodstrike.en.uptodown.com/android
+   AZAR - Video Chat  https://azar-random-video-chat.en.uptodown.com/android
+   Open-Source Apps  https://en.uptodown.com/android/open-source-apps
+   Spotify  https://spotify.en.uptodown.com/android
+   Coin Master  https://coin-master.en.uptodown.com/android
+     https://en.uptodown.com
+   Android  https://en.uptodown.com
+   Apps  
+   Productivity  https://en.uptodown.com/android/productivity
+   Personal  https://en.uptodown.com/android/personal
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub #author-link 
+   GitHub  https://play.google.com/store/apps/details?id=com.github.android
+   Personal  https://en.uptodown.com/android/personal
+net hits:
+=== APKPURE BROWSER ===
+   eFootball PES 2027  https://pes-2017.en.uptodown.com/android
+   RoS: Legacy  https://ros-legacy.en.uptodown.com/android
+   Where Winds Meet  https://where-winds-meet-global.en.uptodown.com/android
+   MOBA  https://en.uptodown.com/android/moba
+   Talking Tom: Gold Run  https://talking-tom-gold-run.en.uptodown.com/android
+   TFT: Teamfight Tactics  https://teamfight-tactics-league-of-legends-strategy-game.en.uptodown.com/androi
+   AI Agents  https://en.uptodown.com/android/ai-agents
+   Kwai Lite  https://kwai-lite.en.uptodown.com/android
+   Daiblos Core  https://daiblos-core.en.uptodown.com/android
+   Best Games like Grand Theft Auto VI  https://en.uptodown.com/android/games-like-grand-theft-auto
+   Blood Strike  https://projectbloodstrike.en.uptodown.com/android
+   AZAR - Video Chat  https://azar-random-video-chat.en.uptodown.com/android
+   Open-Source Apps  https://en.uptodown.com/android/open-source-apps
+   Spotify  https://spotify.en.uptodown.com/android
+   Coin Master  https://coin-master.en.uptodown.com/android
+     https://en.uptodown.com
+   Android  https://en.uptodown.com
+   Apps  
+   Productivity  https://en.uptodown.com/android/productivity
+   Personal  https://en.uptodown.com/android/personal
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub  https://github-android.en.uptodown.com/android
+   GitHub #author-link 
+   GitHub  https://play.google.com/store/apps/details?id=com.github.android
+   Personal  https://en.uptodown.com/android/personal
+net hits:
+=== APKPURE BROWSER ===
+cf wait 0: Just a moment...
+cf wait 0: Just a moment...
+cf wait 1: Just a moment...
+cf wait 1: Just a moment...
+cf wait 2: Just a moment...
+cf wait 2: Just a moment...
+cf wait 3: Just a moment...
+cf wait 3: Just a moment...
+cf wait 4: Just a moment...
+cf wait 4: Just a moment...
+cf wait 5: Just a moment...
+cf wait 5: Just a moment...
+cf passed: false title: Just a moment...
+cf passed: false title: Just a moment...
+=== BROWSER DONE ===
+=== BROWSER DONE ===
 --- processing ---
 NO FILE DOWNLOADED
