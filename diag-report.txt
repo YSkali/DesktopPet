@@ -1,16 +1,77 @@
 === UPTODOWN BROWSER ===
 === UPTODOWN BROWSER ===
-title: 
-title: 
-no button found
-no button found
+title: Download GitHub 1.280.0 for Android | Uptodown.com
+title: Download GitHub 1.280.0 for Android | Uptodown.com
+button found: button:has-text("Download")
+button found: button:has-text("Download")
+no dl event: page.waitForEvent: Timeout 45000ms exceeded while waiting for event "download"
+no dl event: page.waitForEvent: Timeout 45000ms exceeded while waiting for event "download"
+url after click: https://github-android.en.uptodown.com/android/download
+url after click: https://github-android.en.uptodown.com/android/download
 === APKMIRROR BROWSER ===
 === APKMIRROR BROWSER ===
 title: Download GitHub APKs for Android - APKMirror
 title: Download GitHub APKs for Android - APKMirror
-no release link
-no release link
+page text head: APKMirror GitHub By GitHub GitHub  GitHub Advertisement Remove ads, dark theme, and more with  Premium Discover more Try Dev Tools Get Android Phones android WHAT'S NEW DESCRIPTION ALL VERSIONS  1.9.0
+page text head: APKMirror GitHub By GitHub GitHub  GitHub Advertisement Remove ads, dark theme, and more with  Premium Discover more Try Dev Tools Get Android Phones android WHAT'S NEW DESCRIPTION ALL VERSIONS  1.9.0
+relHref: https://www.apkmirror.com/apk/github/github/github-1-9-0-release/#disqus_thread
+relHref: https://www.apkmirror.com/apk/github/github/github-1-9-0-release/#disqus_thread
+release page: https://www.apkmirror.com/apk/github/github/github-1-9-0-release/github-1-9-0-android-apk-download/#disqus_thread
+release page: https://www.apkmirror.com/apk/github/github/github-1-9-0-release/github-1-9-0-android-apk-download/#disqus_thread
+  dl-anchor: #file || DOWNLOAD
+  dl-anchor: #file || DOWNLOAD
+  dl-anchor: https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F || 
+  dl-anchor: https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F || 
+  dl-anchor: https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F&text=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror || 
+  dl-anchor: https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F&text=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror || 
+  dl-anchor: https://www.reddit.com/submit?url=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F&title=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror || 
+  dl-anchor: https://www.reddit.com/submit?url=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F&title=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror || 
+  dl-anchor: https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F&title=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror || 
+  dl-anchor: https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F&title=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror || 
+  dl-anchor: https://telegram.me/share/url?url=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F&text=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror || 
+  dl-anchor: https://telegram.me/share/url?url=https%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F&text=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror || 
+  dl-anchor: whatsapp://send?text=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror%0Ahttps%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F || 
+  dl-anchor: whatsapp://send?text=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror%0Ahttps%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F || 
+  dl-anchor: mailto:?subject=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror&body=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror%0Ahttps%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F || @
+  dl-anchor: mailto:?subject=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror&body=Just+downloaded+the+GitHub+1.9.0+APK+from+%40APKMirror%0Ahttps%3A%2F%2Fwww.apkmirror.com%2Fapk%2Fgithub%2Fgithub%2Fgithub-1-9-0-release%2Fgithub-1-9-0-android-apk-download%2F || @
+  dl-anchor: #safeDownload || MD5, SHA-1, SHA-256 signatures
+  dl-anchor: #safeDownload || MD5, SHA-1, SHA-256 signatures
+  dl-anchor: #safeDownload || Verified safe to install (read more)
+  dl-anchor: /apk/github/github/github-1-9-0-release/github-1-9-0-android-apk-download/download/?key=5057cfa8222c7ae3b84f06b5c7fffc3c5ff045b3 || Download APK 1.54 MB
+  dl-anchor: #safeDownload || Verified safe to install (read more)
+  dl-anchor: /apk/github/github/github-1-9-0-release/github-1-9-0-android-apk-download/download/?key=5057cfa8222c7ae3b84f06b5c7fffc3c5ff045b3 || Download APK 1.54 MB
+dlHref: https://www.apkmirror.com/apk/github/github/github-1-9-0-release/github-1-9-0-android-apk-download/download/?key=5057cfa8222c7ae3b84f06b5c7fffc3c5ff045b3
+dlHref: https://www.apkmirror.com/apk/github/github/github-1-9-0-release/github-1-9-0-android-apk-download/download/?key=5057cfa8222c7ae3b84f06b5c7fffc3c5ff045b3
+download page: https://www.apkmirror.com/apk/github/github/github-1-9-0-release/github-1-9-0-android-apk-download/download/?key=5057cfa8222c7ae3b84f06b5c7fffc3c5ff045b3
+download page: https://www.apkmirror.com/apk/github/github/github-1-9-0-release/github-1-9-0-android-apk-download/download/?key=5057cfa8222c7ae3b84f06b5c7fffc3c5ff045b3
+  dlpage-anchor: https://www.apkmirror.com/ || 
+  dlpage-anchor: https://www.apkmirror.com/ || 
+  dlpage-anchor: https://www.apkmirror.com/ || APKMirror
+  dlpage-anchor: https://www.apkmirror.com/ || APKMirror
+  dlpage-anchor: https://www.apkmirror.com/ || 
+  dlpage-anchor: https://www.apkmirror.com/ || 
+  dlpage-anchor: https://www.apkmirror.com/ || APKMirror
+  dlpage-anchor: https://www.apkmirror.com/ || APKMirror
+  dlpage-anchor: https://www.apkmirror.com/premium || APKMirror Premium
+  dlpage-anchor: https://www.apkmirror.com/premium || APKMirror Premium
+  dlpage-anchor: https://www.apkmirror.com/?memberful_endpoint=auth || Sign in to Premium
+  dlpage-anchor: https://www.apkmirror.com/?memberful_endpoint=auth || Sign in to Premium
+  dlpage-anchor: /wp-content/themes/APKMirror/download.php?id=93248&key=41f716a9d3ae508f5e1507b87b14e1addbef0aba || here
+  dlpage-anchor: /wp-content/themes/APKMirror/download.php?id=93248&key=41f716a9d3ae508f5e1507b87b14e1addbef0aba || here
+  dlpage-anchor: https://www.apkmirror.com/feed/ || 
+  dlpage-anchor: https://www.apkmirror.com/feed/ || 
+  dlpage-anchor: https://github.com/illogical-robot/apkmirror-public/issues || Let us know here.
+  dlpage-anchor: https://github.com/illogical-robot/apkmirror-public/issues || Let us know here.
+finalSel: https://www.apkmirror.com/
+finalSel: https://www.apkmirror.com/
+dl event err: page.waitForEvent: Timeout 90000ms exceeded while waiting for event "download"
+dl event err: page.waitForEvent: Timeout 90000ms exceeded while waiting for event "download"
+saved candidate url: https://www.apkmirror.com/
+saved candidate url: https://www.apkmirror.com/
 === BROWSER DONE ===
 === BROWSER DONE ===
 --- processing ---
-NO FILE DOWNLOADED
+retrying via curl: https://www.apkmirror.com/
+curl result: http=200 size=387838
+file: magic=<! size=387838
+NOT a zip/apk - first bytes: <!DOCTYPE html><html lang="en-US" class="auto-theme"><head>    <meta charset="UTF-8">    <meta 
