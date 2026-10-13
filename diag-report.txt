@@ -1,61 +1,24 @@
-=== SOURCE 1: Aptoide API ===
-aptoide resp head: {"info":{"status":"FAIL","time":{"seconds":0.0194399356842041,"human":"19 milliseconds"}},"errors":[{"code":"APP-1","description":"Application 'package:com.github.android' not found","details":{}}]}
-aptoide url: 
-=== SOURCE 2: APKPure CDN ===
---- trying apkpure: https://d.apkpure.com/b/APK/com.github.android?version=latest
-    http=403 magic=<! size=5771
-=== SOURCE 3: APKPure page ===
-page size: 5717 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta nam
-extracted: 
-=== SOURCE 4: APKCombo ===
-page size: 0 head: 
-extracted: 
-=== SOURCE 5: Uptodown ===
-attempt 1: size=156611
---- uptodown deep dive ---
-   data-url: data-url="apps"
-   data-url: data-url="https://github-android.en.uptodown.com/android"
-   data-url: data-url="https://github-android.en.uptodown.com/android/versions"
-   data-url: data-url="https://play.google.com/store/apps/details?id=com.github.android"
-   dlref: https://adobe-premiere-video-editor.en.uptodown.com/android
-   dlref: https://ads.uptodown.dev/ads/
-   dlref: https://aniimo.en.uptodown.com/android
-   dlref: https://ar.uptodown.com/
-   dlref: https://blackmagic-camera.en.uptodown.com/android
-   dlref: https://blog.en.uptodown.com/
-   dlref: https://br.uptodown.com/
-   dlref: https://chatgpt.en.uptodown.com/android
-   dlref: https://claude.en.uptodown.com/android
-   dlref: https://cn.uptodown.com/
-   dlref: https://com-facebook-aura.en.uptodown.com/android
-   dlref: https://dcko.en.uptodown.com/android
-   dlref: https://de.uptodown.com/
-   dlref: https://deepseek-ai-assistant.en.uptodown.com/android
-   dlref: https://dragon-city.en.uptodown.com/android
-/download page size: 37506
-   dl2 data-url: data-url="apps"
--- uto2 head: <!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" /><title>Uptodown 404</title><link rel="preconnect" href="https://img.utdstc.com"><link rel="p
--- dw.uptodown refs in uto2:
--- 'dwn' contexts in uto2:
--- install/dl url vars in uto2:
--- ajax /download resp head: <html>
-<head><title>301 Moved Permanently</title></head>
-<body>
-<center><h1>301 Moved Permanently</h1></center>
-<hr><center>nginx</center>
-</body>
-</html>
-ajax url: 
-extracted direct: 
-=== SOURCE 7: Chinese stores ===
-  https://sj.qq.com/appdetail/com.github.android -> 404:98971 title: 
-  https://app.mi.com/details?id=com.github.android -> 200:85688 title: <title>手机游戏应用商店_软件商店app下载-小米应用商店
-  https://shouji.baidu.com/detail?appname=com.github.android -> 200:8894 title: <title>百度手机助手_安卓应用下载安装_有颜又有货的应用商�
-  https://www.wandoujia.com/search?key=github -> 000:0 title: <title>百度手机助手_安卓应用下载安装_有颜又有货的应用商�
-=== SOURCE 8: apksos ===
-page size: 56996
-title: <title>Страница не найдена &#8212; Электронные гаджеты
-=== SOURCE 6: APKFab ===
-page size: 5646 head: <!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta nam
-extracted: 
-=== FINAL: ok=0 ===
+node:internal/modules/cjs/loader:1433
+  throw err;
+  ^
+
+Error: Cannot find module 'playwright'
+Require stack:
+- /tmp/dl.js
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1430:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1040:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1045:22)
+    at Function._load (node:internal/modules/cjs/loader:1216:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Module.require (node:internal/modules/cjs/loader:1527:12)
+    at require (node:internal/modules/helpers:147:16)
+    at Object.<anonymous> (/tmp/dl.js:1:22)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/tmp/dl.js' ]
+}
+
+Node.js v22.23.3
+--- processing ---
+NO FILE DOWNLOADED
