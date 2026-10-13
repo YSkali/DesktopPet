@@ -1,10 +1,28 @@
 === d.apkpure.com ===
-apkpure-cdn: http=403 size=5781 magic=<! url=https://d.apkpure.com/b/APK/com.github.android?version=latest
+apkpure-cdn UA=[APKPure/3.19.39 (Aegon)] http=403 size=5525 magic=<!
+apkpure-cdn UA=[APKPure/3.20.16 (Aegon)] http=403 size=5525 magic=<!
+apkpure-cdn UA=[Dalvik/2.1.0 (Linux; U; Android 13; Pixel 7 Build/TQ3A.230805.001)] http=403 size=5653 magic=<!
 === apkcombo ===
 page size: 0
 apkcombo: no url
 === apksos ===
 page size: 56996
+  link: action="https://apksos.com/"
+  link: href="#content"
+  link: href="#icon-bars"
+  link: href="#icon-close"
+  link: href="#page"
+  link: href="https://apksos.com/"
+  link: href="https://apksos.com/app/com.github.android/"
+  link: href="https://apksos.com/comments/feed/"
+  link: href="https://apksos.com/feed/"
+  link: href="https://apksos.com/wp-includes/wlwmanifest.xml"
+  link: href="https://apksos.com/xmlrpc.php?rsd"
+  link: href="https://gmpg.org/xfn/11"
+  link: href="https://www.liveinternet.ru/click"
+  link: src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+  link: src="http://vaporshop-altay.ru/block_script.php"
+  link: src="https://mc.yandex.ru/watch/109410407"
 apksos: no url
 === apk.support v2 ===
 page size: 5675
@@ -28,10 +46,10 @@ cf passed: false title:
 no download button found
 no download button found
 --- all network requests (filtered):
---- all network requests (filtered):
-  GET https://github-android.en.uptodown.com/android/download
   GET https://github-android.en.uptodown.com/android/download
 === APKPURE BROWSER ===
+--- all network requests (filtered):
+  GET https://github-android.en.uptodown.com/android/download
 === APKPURE BROWSER ===
 cf wait 0: Just a moment...
 cf wait 0: Just a moment...
