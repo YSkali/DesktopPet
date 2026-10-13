@@ -1,5 +1,20 @@
 === uptodown API ===
-json size: 36769 head: <!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" /><title>Uptodown 404</title><link rel="preco
+versions page size: 100666
+  vlink: href="https://github-android.ar.uptodown.com/android/versions"
+  vlink: href="https://github-android.br.uptodown.com/android/versions"
+  vlink: href="https://github-android.cn.uptodown.com/android/versions"
+  vlink: href="https://github-android.de.uptodown.com/android/versions"
+  vlink: href="https://github-android.en.uptodown.com/android/versions"
+  vlink: href="https://github-android.fr.uptodown.com/android/versions"
+  vlink: href="https://github-android.id.uptodown.com/android/versions"
+  vlink: href="https://github-android.in.uptodown.com/android/versions"
+  vlink: href="https://github-android.it.uptodown.com/android/versions"
+  vlink: href="https://github-android.jp.uptodown.com/android/versions"
+  vlink: href="https://github-android.kr.uptodown.com/android/versions"
+  vlink: href="https://github-android.ro.uptodown.com/android/versions"
+  vlink: href="https://github-android.ru.uptodown.com/android/versions"
+  vlink: href="https://github-android.th.uptodown.com/android/versions"
+  vlink: href="https://github-android.tr.uptodown.com/android/versions"
 version url: 
 === d.apkpure.com ===
 apkpure-cdn UA=[APKPure/3.19.39 (Aegon)] http=403 size=5546 magic=<!
@@ -18,7 +33,7 @@ apkcenter: no url
 page size: 0
 9apps: no url
 === uptodown curl ===
-page size: 156664
+page size: 156611
   ref: data-url=
 uptodown: no url
 === UPTODOWN BROWSER ===
@@ -26,45 +41,47 @@ uptodown: no url
 cf passed: true title: Download GitHub 1.280.0 for Android | Uptodown.com
 cf passed: true title: Download GitHub 1.280.0 for Android | Uptodown.com
   data-attr: IMG data-url=https://en.uptodown.com
-  data-attr: IMG data-url=https://en.uptodown.com/windows
-  data-attr: IMG data-url=https://en.uptodown.com/mac
-  data-attr: IMG data-url=https://en.uptodown.com/ios
-  data-attr: BUTTON data-url=apps
   data-attr: IMG data-url=https://en.uptodown.com
   data-attr: IMG data-url=https://en.uptodown.com/windows
   data-attr: IMG data-url=https://en.uptodown.com/mac
   data-attr: IMG data-url=https://en.uptodown.com/ios
   data-attr: BUTTON data-url=apps
   data-attr: SPAN data-url=https://play.google.com/store/apps/details?id=com.github.android
+  data-attr: BUTTON data-url=https://play.google.com/store/apps/details?id=com.github.android
+  data-attr: SPAN data-url=https://github-android.en.uptodown.com/android/versions
+  data-attr: DIV data-url=https://github-android.en.uptodown.com/android
+  data-attr: DIV data-url=https://github-android.en.uptodown.com/android
+  data-attr: IMG data-url=https://en.uptodown.com/windows
+  data-attr: IMG data-url=https://en.uptodown.com/mac
+  data-attr: IMG data-url=https://en.uptodown.com/ios
+  data-attr: BUTTON data-url=apps
   data-attr: SPAN data-url=https://play.google.com/store/apps/details?id=com.github.android
   data-attr: BUTTON data-url=https://play.google.com/store/apps/details?id=com.github.android
-  data-attr: BUTTON data-url=https://play.google.com/store/apps/details?id=com.github.android
   data-attr: SPAN data-url=https://github-android.en.uptodown.com/android/versions
-  data-attr: SPAN data-url=https://github-android.en.uptodown.com/android/versions
-  data-attr: DIV data-url=https://github-android.en.uptodown.com/android
-  data-attr: DIV data-url=https://github-android.en.uptodown.com/android
   data-attr: DIV data-url=https://github-android.en.uptodown.com/android
   data-attr: DIV data-url=https://github-android.en.uptodown.com/android
   btn: <button aria-label="Search" type="submit"> <img alt="Search icon" loading="lazy" width="20" height="20" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-search"> </button>
+  btn: <button aria-label="Search" type="submit"> <img alt="Search icon" loading="lazy" width="20" height="20" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-search"> </button>
+  btn: <button data-url="apps"> <span>Apps</span> </button>
   btn: <button data-url="apps"> <span>Apps</span> </button>
   btn: <button id="author-link" onclick="addEventAnalytics('authorLink', {'event_category': 'author'});" data-organization-slug="github"> GitHub</button>
   btn: <button id="detail-download-button" class="button download xapk " data-dwldng="Downloading…" data-showspinner="true" data-app-id="779365" data-file-id="1226349450" data-only-xapk="0" data-download-ver
   btn: <button class="button variants" data-version="14257751" onclick="addEventAnalytics('variants-button', {'event_category': 'variant'});"> <img class="svg" alt="" width="10" height="10" src=" https://stc
   btn: <button id="gplay-button" data-url="https://play.google.com/store/apps/details?id=com.github.android" class="button external-store" rel="nofollow" onclick="addEventAnalytics('downloadApp', {'event_cat
   btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
-  btn: <button class="scroll left"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
-  btn: <button name="item-section-more" type="button" class="more" onclick="addEventAnalytics('item-viewMore', {'event_category': 'item'});"> <img alt="See more" width="24" height="24" src="https://stc.utdst
-  btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/svgs/icon-bar-arrow.svg"> </button>
-  btn: <button aria-label="Search" type="submit"> <img alt="Search icon" loading="lazy" width="20" height="20" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-search"> </button>
-  btn: <button data-url="apps"> <span>Apps</span> </button>
   btn: <button id="author-link" onclick="addEventAnalytics('authorLink', {'event_category': 'author'});" data-organization-slug="github"> GitHub</button>
   btn: <button id="detail-download-button" class="button download xapk " data-dwldng="Downloading…" data-showspinner="true" data-app-id="779365" data-file-id="1226349450" data-only-xapk="0" data-download-ver
   btn: <button class="button variants" data-version="14257751" onclick="addEventAnalytics('variants-button', {'event_category': 'variant'});"> <img class="svg" alt="" width="10" height="10" src=" https://stc
   btn: <button id="gplay-button" data-url="https://play.google.com/store/apps/details?id=com.github.android" class="button external-store" rel="nofollow" onclick="addEventAnalytics('downloadApp', {'event_cat
   btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
   btn: <button class="scroll left"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
+  btn: <button class="scroll left"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-bar-arrow"> </button>
+  btn: <button name="item-section-more" type="button" class="more" onclick="addEventAnalytics('item-viewMore', {'event_category': 'item'});"> <img alt="See more" width="24" height="24" src="https://stc.utdst
   btn: <button name="item-section-more" type="button" class="more" onclick="addEventAnalytics('item-viewMore', {'event_category': 'item'});"> <img alt="See more" width="24" height="24" src="https://stc.utdst
   btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/svgs/icon-bar-arrow.svg"> </button>
+  btn: <button class="scroll right"> <img alt="Scroll icon" width="10" height="10" src="https://stc.utdstc.com/img/svgs/icon-bar-arrow.svg"> </button>
+  detail-download-button FULL: <button id="detail-download-button" class="button download xapk " data-dwldng="Downloading…" data-showspinner="true" data-app-id="779365" data-file-id="1226349450" data-only-xapk="0" data-download-version="1226349450" title="download github free" rel="nofollow" onclick="addEventAnalytics('downloadApp', {'event_category': 'download-link-deeplink', 'appID': '779365'});"> <strong>Download</strong><p class="size"> with <img loading="lazy" alt="" width="10" height="10" src="https://stc.utdstc.com/img/svgs/icon-logo-white-store.svg"> UPTODOWN app store <img class="svg" alt="" width="20" height="20" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-20-download-button"> <span class="loader"></span> </p></button>
+  detail-download-button FULL: <button id="detail-download-button" class="button download xapk " data-dwldng="Downloading…" data-showspinner="true" data-app-id="779365" data-file-id="1226349450" data-only-xapk="0" data-download-version="1226349450" title="download github free" rel="nofollow" onclick="addEventAnalytics('downloadApp', {'event_category': 'download-link-deeplink', 'appID': '779365'});"> <strong>Download</strong><p class="size"> with <img loading="lazy" alt="" width="10" height="10" src="https://stc.utdstc.com/img/svgs/icon-logo-white-store.svg"> UPTODOWN app store <img class="svg" alt="" width="20" height="20" src="https://stc.utdstc.com/img/icons-nolazy.svg#icon-20-download-button"> <span class="loader"></span> </p></button>
   script:  { "@context":"https://schema.org", "@type":"WebPage", "url":"https://github-android.en.uptodown.com/android", "isPartOf":{ "@type": "WebSite", "name": "Uptodown", "url" : "https://en.uptodown.com/android", "publisher" : {"@id" : "https://en.uptodown.com/#organization"} }, "mainEntity":{ "@type":"MobileApplication", "name":"GitHub", "url":"https://github-android.en.uptodown.com/android", "description":"The official GitHub app", "image": "https://img.utdstc.com/icon/4ae/f58/4aef58c6b9e0de9aa521e0
   script:  { "@context":"https://schema.org", "@type":"WebPage", "url":"https://github-android.en.uptodown.com/android", "isPartOf":{ "@type": "WebSite", "name": "Uptodown", "url" : "https://en.uptodown.com/android", "publisher" : {"@id" : "https://en.uptodown.com/#organization"} }, "mainEntity":{ "@type":"MobileApplication", "name":"GitHub", "url":"https://github-android.en.uptodown.com/android", "description":"The official GitHub app", "image": "https://img.utdstc.com/icon/4ae/f58/4aef58c6b9e0de9aa521e0
   script:  { "@context":"https://schema.org", "@type":"BreadcrumbList", "itemListElement":[ { "@type": "ListItem", "position": 1, "name": "Android", "item": "https://en.uptodown.com" }, { "@type": "ListItem", "position": 2, "name": "Productivity", "item": "https://en.uptodown.com/android/productivity" }, { "@type": "ListItem", "position": 3, "name": "Personal", "item": "https://en.uptodown.com/android/personal" }, { "@type": "ListItem", "position": 4, "name": "GitHub", "item": "https://github-android.en.u
@@ -84,78 +101,140 @@ url now: https://github-android.en.uptodown.com/android/download
   GET https://stc.utdstc.com/1791539799701/download.css
   GET https://stc.utdstc.com/1791539799701/download.css
   GET https://challenges.cloudflare.com/turnstile/v0/g/4df4a60fa397/api.js
-  GET https://challenges.cloudflare.com/turnstile/v0/g/4df4a60fa397/api.js
-  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91h1v888089788za208zd888089788xf1&_p=1791856822868&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGA&are=1&cid=818327858.1791856823&frm=0&pscdl=noa
-  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91h1v888089788za208zd888089788xf1&_p=1791856822868&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGA&are=1&cid=818327858.1791856823&frm=0&pscdl=noa
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6ac0h2v888089788za208zd888089788xf1&_p=1791857113525&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGA&are=1&cid=517404792.1791857114&frm=0&pscdl=noa
   GET https://cm.g.doubleclick.net/partnerpixels?url=https%3A%2F%2Fgithub-android.en.uptodown.com%2Fandroid%2Fdownload
-  GET https://cm.g.doubleclick.net/partnerpixels?url=https%3A%2F%2Fgithub-android.en.uptodown.com%2Fandroid%2Fdownload
-  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=1863341271922736&correlator=3676199328597956&eid=95404129%2C122881510%2C95405805%2C122881484%2C31088081&output=ldjh&gdfp_req=1&vrg=202610070101&ptt=17&impl=fifs
-  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=1863341271922736&correlator=3676199328597956&eid=95404129%2C122881510%2C95405805%2C122881484%2C31088081&output=ldjh&gdfp_req=1&vrg=202610070101&ptt=17&impl=fifs
+  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=8229806905934559&correlator=910653983954711&eid=122881510%2C95404584%2C122881483&output=ldjh&gdfp_req=1&vrg=202610060101&ptt=17&impl=fifs&iu_parts=1060150%2CLea
   POST https://id5-sync.com/g/v2/492.json
-  POST https://id5-sync.com/g/v2/492.json
+  GET https://gum.criteo.com/sid/json?origin=publishertagids&domain=uptodown.com&sn=ChromeSyncframe&so=0&topUrl=github-android.en.uptodown.com
   GET https://www.google.com/recaptcha/api2/aframe
   POST https://id5-sync.com/api/config/prebid
   GET https://match.adsrvr.org/track/rid?ttd_pid=zdsq63q&fmt=json
-  GET https://gum.criteo.com/sid/json?origin=publishertagids&domain=uptodown.com&sn=ChromeSyncframe&so=0&topUrl=github-android.en.uptodown.com
-  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856824106&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=de8297dc-c22a-4a78-9f5e-c4e
-  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856824107&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=de8297dc-c22a-4a78-9f5e-c4e
-  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856824107&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=de8297dc-c22a-4a78-9f5e-c4e
-  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=1863341271922736&correlator=3083871094351619&eid=95404129%2C122881510%2C95405805%2C122881484%2C31088081&output=ldjh&gdfp_req=1&vrg=202610070101&ptt=17&impl=fifs
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791857115444&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=66bcb0c1-2867-4c6c-97a7-0a3
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791857115445&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=66bcb0c1-2867-4c6c-97a7-0a3
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791857115445&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=66bcb0c1-2867-4c6c-97a7-0a3
+  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=8229806905934559&correlator=3981840213881892&eid=122881510%2C95404584%2C122881483&output=ldjh&gdfp_req=1&vrg=202610060101&ptt=17&impl=fifs&iu_parts=78011819%3A1
+  GET https://ssbsync.smartadserver.com/api/sync?callerId=146&gdpr=0&gdpr_consent=
   POST https://id5-sync.com/g/v2/492.json
-  GET https://sync.cootlogix.com/api/user/html/pbs_sync?gdpr=&gdpr_consent=&us_privacy=&redirect=https%3A%2F%2Fcookies.nextmillmedia.com%2Fsetuid%3Fbidder%3Dvidazoo%26nmuid%3D%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D%26
-  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?p=17322&endpoint=us-east
-  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fcookies.nextmillmedia.com%2Fsetuid%3Fbidder%3Dsmartadserver%26nmuid%3D%26gdpr%3D%26gdpr_consent%3
-  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91h1v888089788za200zd888089788xf1&_p=1791856822868&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQ&are=1&cid=818327858.1791856823&frm=0&pscdl=noapi&rcb=
-  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91h1v888089788za200zd888089788xf1&_p=1791856822868&gcs=G111&gcd=13v3v3v3v5l1&npa=0&dma=0&gdid=dMmY1Mm&_eu=AEIAAGQ&are=1&cid=818327858.1791856823&
-  GET https://sync.kueezrtb.com/api/user/html/62ce79e7dd15099534ae5e04?pbs=true&gdpr=0&gdpr_consent=&us_privacy=&gpp=&gpp_sid=&redirect=https%3A%2F%2Fprebid.admatic.de%2Fsetuid%3Fbidder%3Dkueezrtb%26gdpr%3D%26gdpr_consent%
-  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3D42a055fd-abfb-47b1-b753-6e8041111cc0%
-  GET https://securepubads.g.doubleclick.net/pagead/adview?ai=CXZ-NuJDNavP5GPPV88APj-6d2QL6j4XmbaCDqMWtDcCNtwEQASDjyKwiYMme2Ifoo6AVyAEJ4AIAqAMByAMCqgTZAk_QA57UCWu2cRiC4roVAURR-ZUCSn225uoXtcyiNHD5WILTh0gspNGees_HxpxIj5PmK8f
-  GET https://securepubads.g.doubleclick.net/pagead/adview?ai=CXZ-NuJDNavP5GPPV88APj-6d2QL6j4XmbaCDqMWtDcCNtwEQASDjyKwiYMme2Ifoo6AVyAEJ4AIAqAMByAMCqgTZAk_QA57UCWu2cRiC4roVAURR-ZUCSn225uoXtcyiNHD5WILTh0gspNGees_HxpxIj5PmK8f
-  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3D42a055fd-abfb-47b1-b753-6e8041111cc0%
-  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&redirectUri=https%3A%2F%2Fcs.yellowblue.io%2Fcs%3Ffwrd%3D1%26aid%3D11600%26uid%3D%5Bssb_sync_pid%5D&us_privacy=1NNN
-  GET https://contextual.media.net/cksync.php?cs=25&gdpr=0&gdpr_consent=&ovsid=%7B%7BAPID%7D%7D&redirect=https%3A%2F%2Fcs.yellowblue.io%2Fcs%3Ffwrd%3D1%26aid%3D11585%26id%3D%3Cvsid%3E&type=ris
+  GET https://securepubads.g.doubleclick.net/pagead/adview?ai=CW-N525HNaqL1LpCnn_wP6O61kAn6j4XmbaCDqMWtDcCNtwEQASDjyKwiYMmG_4fwo-wSyAEJ4AIAqAMByAMCqgTdAk_QMKaQqEBJm6KbaYkCCgdOO52HhlhWuTlx0g0STHo28Y7j1nIGrDdBcvt62QgAkMlFwZ3
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6ac0h2v888089788za200zd888089788xf1&_p=1791857113525&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQ&are=1&cid=517404792.1791857114&frm=0&pscdl=noapi&rcb=
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6ac0h2v888089788za200zd888089788xf1&_p=1791857113525&gcs=G111&gcd=13v3v3v3v5l1&npa=0&dma=0&gdid=dMmY1Mm&_eu=AEIAAGQ&are=1&cid=517404792.1791857114&
+  GET https://securepubads.g.doubleclick.net/pagead/adview?ai=CW-N525HNaqL1LpCnn_wP6O61kAn6j4XmbaCDqMWtDcCNtwEQASDjyKwiYMmG_4fwo-wSyAEJ4AIAqAMByAMCqgTdAk_QMKaQqEBJm6KbaYkCCgdOO52HhlhWuTlx0g0STHo28Y7j1nIGrDdBcvt62QgAkMlFwZ3
+  GET https://www.temu.com/api/adx/cm/pixel-pubmatic?id=0A19505A-7AB1-43CA-8A45-DF06AA5A75E3&gdpr=0&gdpr_consent=&us_privacy=
+  GET https://www.temu.com/api/adx/cm/pixel-pubmatic?id=0A19505A-7AB1-43CA-8A45-DF06AA5A75E3&gdpr=0&gdpr_consent=&us_privacy=
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-700.woff2
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-regular.woff2
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-500.woff2
+  GET https://www.temu.com/api/adx/cm/pixel-opera?adx_uid=1a520feddda1a877&gdpr=0&gdpr_consent=&us_privacy=&redir=https%3A%2F%2Ft.oa.opera.com%2Fsync%3Fvendor%3D60369%26pubid%3Dpub8730968190912%26gdpr%3D0%26consent%3D%26us
+  GET https://pippio.com/api/sync?pid=5324&it=1&iv=385681f31c3478898d890fdc46bc9592ab8abc67c0837c1598f2c5f312c919d8791426b5417dce21&_=2
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?p=medianet
+  GET https://token.rubiconproject.com/khaos.json?
+  GET https://capi.connatix.com/us/pixel?puid=MV61GNFH-11-KVN1&pId=11&gdpr=&gdpr_consent=&us_privacy=
+  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3De12e990b-db26-414f-9d9e-46aa2cd0db5a%26uid%3D%5Bs
+  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3Dee95e897-88b4-451f-a94e-c6fb06bcc646%26uid%3D%5Bs
+  GET https://tr.blismedia.com/v1/api/sync/openx
+  GET https://hbx.media.net/cksync.php?bidder=medianet&cs=1&gdpr=0&gdpr_consent=&gpp=%5BGPP%5D&gpp_sid=%5BGPP_SID%5D&ovsid=%7B%7BAPID%7D%7D&redirect=https%3A%2F%2Fcs-server-s2s.yellowblue.io%2Fcs%3Ffwrd%3D1%26aid%3D11585%2
+  GET https://ssbsync.smartadserver.com/api/sync?callerId=77&gdpr=0&gdpr_consent=
+  GET https://www.temu.com/api/adx/cm/pixel-opera?adx_uid=1a520feddda1a877&gdpr=0&gdpr_consent=&us_privacy=&redir=https%3A%2F%2Ft.oa.opera.com%2Fsync%3Fvendor%3D60369%26pubid%3Dpub14207605456320%26gdpr%3D0%26consent%3D%26u
   GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?endpoint=us-east&p=rise_engage
-  GET https://secure.adnxs.com/getuid?https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dappnexus%26userId%3D%24UID%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D&gdpr=&gdpr_consent=
-  GET https://image8.pubmatic.com/AdServer/ImgSync?p=159988&gdpr=&gdpr_consent=&us_privacy=&pu=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dpubmatics2s%26userId%3D%23PMUID%26gdpr%3D%26gdpr_consent%3D%26us_
-  GET https://ap.lijit.com/pixel?gdpr=&gdpr_consent=&redir=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dsovrn%26userId%3D%24UID%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D
-  GET https://x.bidswitch.net/check_uuid/https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dgrid%26userId%3D%24%7BBSW_UUID%7D%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D?gdpr=&gdpr_consent=&us_privacy=&uid=${BSW
-  GET https://eb2.3lift.com/getuid?gdpr=&gdpr_consent=&redir=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dtriplelift%26userId%3D$UID%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D
-  GET https://image8.pubmatic.com/AdServer/ImgSync?p=160318&gdpr=&gdpr_consent=&us_privacy=&pu=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dpubmaticut%26userId%3D%23PMUID%26gdpr%3D%26gdpr_consent%3D%26us_p
-  GET https://ssp-sync.criteo.com/user-sync/redirect?profile=342&gdpr_consent=&gdpr=&gpp=&gpp_sid=&us_privacy=&redir=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dcriteo%26userId%3D%24%7BCRITEO_USER_ID%7D%2
-  GET https://cs.media.net/cksync?cs=30&type=vdz&gdpr=&gdpr_consent=&us_privacy=&redirect=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dmedianet%26userId%3D%3Cvsid%3E%26gdpr%3D%26gdpr_consent%3D%26us_privac
-  GET https://ads.yieldmo.com/pbsync?is=vidazoo&gdpr=&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dyieldmo%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D%26userId%3D%24UI
-  GET https://www.google.com/recaptcha/api2/aframe
-  POST https://id5-sync.com/api/config/prebid
-  GET https://match.adsrvr.org/track/rid?ttd_pid=zdsq63q&fmt=json
-  GET https://gum.criteo.com/sid/json?origin=publishertagids&domain=uptodown.com&sn=ChromeSyncframe&so=0&topUrl=github-android.en.uptodown.com
-  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856824106&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=de8297dc-c22a-4a78-9f5e-c4e
-  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856824107&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=de8297dc-c22a-4a78-9f5e-c4e
-  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791856824107&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=de8297dc-c22a-4a78-9f5e-c4e
-  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=1863341271922736&correlator=3083871094351619&eid=95404129%2C122881510%2C95405805%2C122881484%2C31088081&output=ldjh&gdfp_req=1&vrg=202610070101&ptt=17&impl=fifs
-  POST https://id5-sync.com/g/v2/492.json
-  GET https://sync.cootlogix.com/api/user/html/pbs_sync?gdpr=&gdpr_consent=&us_privacy=&redirect=https%3A%2F%2Fcookies.nextmillmedia.com%2Fsetuid%3Fbidder%3Dvidazoo%26nmuid%3D%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D%26
-  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?p=17322&endpoint=us-east
-  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fcookies.nextmillmedia.com%2Fsetuid%3Fbidder%3Dsmartadserver%26nmuid%3D%26gdpr%3D%26gdpr_consent%3
-  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91h1v888089788za200zd888089788xf1&_p=1791856822868&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQ&are=1&cid=818327858.1791856823&frm=0&pscdl=noapi&rcb=
-  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6a91h1v888089788za200zd888089788xf1&_p=1791856822868&gcs=G111&gcd=13v3v3v3v5l1&npa=0&dma=0&gdid=dMmY1Mm&_eu=AEIAAGQ&are=1&cid=818327858.1791856823&
-  GET https://sync.kueezrtb.com/api/user/html/62ce79e7dd15099534ae5e04?pbs=true&gdpr=0&gdpr_consent=&us_privacy=&gpp=&gpp_sid=&redirect=https%3A%2F%2Fprebid.admatic.de%2Fsetuid%3Fbidder%3Dkueezrtb%26gdpr%3D%26gdpr_consent%
-  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3D42a055fd-abfb-47b1-b753-6e8041111cc0%
-  GET https://securepubads.g.doubleclick.net/pagead/adview?ai=CXZ-NuJDNavP5GPPV88APj-6d2QL6j4XmbaCDqMWtDcCNtwEQASDjyKwiYMme2Ifoo6AVyAEJ4AIAqAMByAMCqgTZAk_QA57UCWu2cRiC4roVAURR-ZUCSn225uoXtcyiNHD5WILTh0gspNGees_HxpxIj5PmK8f
-  GET https://securepubads.g.doubleclick.net/pagead/adview?ai=CXZ-NuJDNavP5GPPV88APj-6d2QL6j4XmbaCDqMWtDcCNtwEQASDjyKwiYMme2Ifoo6AVyAEJ4AIAqAMByAMCqgTZAk_QA57UCWu2cRiC4roVAURR-ZUCSn225uoXtcyiNHD5WILTh0gspNGees_HxpxIj5PmK8f
-  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3D42a055fd-abfb-47b1-b753-6e8041111cc0%
-  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&redirectUri=https%3A%2F%2Fcs.yellowblue.io%2Fcs%3Ffwrd%3D1%26aid%3D11600%26uid%3D%5Bssb_sync_pid%5D&us_privacy=1NNN
-  GET https://contextual.media.net/cksync.php?cs=25&gdpr=0&gdpr_consent=&ovsid=%7B%7BAPID%7D%7D&redirect=https%3A%2F%2Fcs.yellowblue.io%2Fcs%3Ffwrd%3D1%26aid%3D11585%26id%3D%3Cvsid%3E&type=ris
-  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?endpoint=us-east&p=rise_engage
-  GET https://secure.adnxs.com/getuid?https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dappnexus%26userId%3D%24UID%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D&gdpr=&gdpr_consent=
-  GET https://image8.pubmatic.com/AdServer/ImgSync?p=159988&gdpr=&gdpr_consent=&us_privacy=&pu=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dpubmatics2s%26userId%3D%23PMUID%26gdpr%3D%26gdpr_consent%3D%26us_
-  GET https://ap.lijit.com/pixel?gdpr=&gdpr_consent=&redir=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dsovrn%26userId%3D%24UID%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D
-  GET https://x.bidswitch.net/check_uuid/https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dgrid%26userId%3D%24%7BBSW_UUID%7D%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D?gdpr=&gdpr_consent=&us_privacy=&uid=${BSW
-  GET https://eb2.3lift.com/getuid?gdpr=&gdpr_consent=&redir=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dtriplelift%26userId%3D$UID%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D
-  GET https://image8.pubmatic.com/AdServer/ImgSync?p=160318&gdpr=&gdpr_consent=&us_privacy=&pu=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dpubmaticut%26userId%3D%23PMUID%26gdpr%3D%26gdpr_consent%3D%26us_p
-  GET https://ssp-sync.criteo.com/user-sync/redirect?profile=342&gdpr_consent=&gdpr=&gpp=&gpp_sid=&us_privacy=&redir=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dcriteo%26userId%3D%24%7BCRITEO_USER_ID%7D%2
-  GET https://cs.media.net/cksync?cs=30&type=vdz&gdpr=&gdpr_consent=&us_privacy=&redirect=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dmedianet%26userId%3D%3Cvsid%3E%26gdpr%3D%26gdpr_consent%3D%26us_privac
-  GET https://ads.yieldmo.com/pbsync?is=vidazoo&gdpr=&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fsync.cootlogix.com%2Fapi%2Fcookie%3FpartnerId%3Dyieldmo%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D%26userId%3D%24UI
+--- all requests after click (unfiltered, last 30):
+  R: GET https://cs.krushmedia.com/d46c1a37ce15a20ee9d2b8259ba90147.gif?puid=MV61GNFH-11-KVN1&redir=&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://cs.krushmedia.com/d46c1a37ce15a20ee9d2b8259ba90147.gif?puid=MV61GNFH-11-KVN1&redir=&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://pixel.rubiconproject.com/exchange/sync.php?p=krushmedia&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://pixel.rubiconproject.com/exchange/sync.php?p=krushmedia&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://cs.krushmedia.com/d46c1a37ce15a20ee9d2b8259ba90147.gif?puid=MV61GNFH-11-KVN1&redir=&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://cs.krushmedia.com/d46c1a37ce15a20ee9d2b8259ba90147.gif?puid=MV61GNFH-11-KVN1&redir=&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://s.ad.smaato.net/c/?dspInit=1132&dspCookie=a8acdaf3-9c8d-53a1-ad59-af41202abddd&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]
+  R: GET https://sync.inmobi.com/setuid?bidderID=82&dspUserId=be2a25852c
+  R: GET https://sync.programmaticx.ai/api/cookie?partnerId=progx-krushmedia&gdpr=$%7BGDPR%7D&gdpr_consent=$%7BGDPR_CONSENT%7D&us_privacy=$%7BCOPPA%7D&userId=77f60b48-c129-5bb4-8fa5-a5d246998040
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://eb2.3lift.com/getuid?redir=https%3A%2F%2Fcs.krushmedia.com%2F7fd23a3f0217f27d6c9750c140876344.gif%3Fpuid%3D%24UID&uid=$UID
+  R: GET https://cs.krushmedia.com/7fd23a3f0217f27d6c9750c140876344.gif?puid=3989273281294970104892
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://sync.smartadserver.com/getuid?url=https%3A%2F%2Fcs.krushmedia.com%2Fb945828a5f7e736ee129bc1270fe22ba.gif%3Fpuid%3D%5Bsas_uid%5D&gdpr_consent=[consent_string]&nwid=4579
+  R: GET https://sync.cootlogix.com/api/cookie?partnerId=shinez-krushmedia&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]&userId=a8acdaf3-9c8d-53a1-ad59-af41202abddd
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://cs.krushmedia.com/b945828a5f7e736ee129bc1270fe22ba.gif?puid=7690611558307437835
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://cs.krushmedia.com/c3515c2596ad8b03259d549072aec932.gif?puid=a8acdaf3-9c8d-53a1-ad59-af41202abddd&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&coppa=[COPPA]&gpp=[GPP]&gpp_sid=[GPP_SI
+  R: GET https://visitor-krushmedia_video.omnitagjs.com/visitor/bsync?uid=7d6a83f5259befc8f9c924d7e034011a&name=krushmedia_video&url=yoururlencoded?visitor=PARTNER_USER_ID
+  R: GET https://sync.iqzonertb.live/psync?t=s&e=458&cb=https%3A%2F%2Fcs.krushmedia.com%2F2fb2a77d3ba334963fdb0f775ab62053.gif%3Fpuid%3D%25USER_ID%25%26gdpr%3D%5BGDPR%5D%26gdpr_consent%3D[GDPR_CONSENT]%26c
+  R: GET https://tracker.rtb-stellormedia.com/sync?id=110&uid=3aLlKwV1&redirect=https%3A%2F%2Fsync.iqzonertb.live%2Fpsync%3Ft%3Dd%26e%3D527%26u%3D{PLL_USER_ID}%26clp%3DaHR0cHM6Ly9jcy5rcnVzaG1lZGlhLmNvbS8yZ
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
 === APKPURE BROWSER ===
+  GET https://challenges.cloudflare.com/turnstile/v0/g/4df4a60fa397/api.js
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6ac0h2v888089788za208zd888089788xf1&_p=1791857113525&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGA&are=1&cid=517404792.1791857114&frm=0&pscdl=noa
+  GET https://cm.g.doubleclick.net/partnerpixels?url=https%3A%2F%2Fgithub-android.en.uptodown.com%2Fandroid%2Fdownload
+  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=8229806905934559&correlator=910653983954711&eid=122881510%2C95404584%2C122881483&output=ldjh&gdfp_req=1&vrg=202610060101&ptt=17&impl=fifs&iu_parts=1060150%2CLea
+  POST https://id5-sync.com/g/v2/492.json
+  GET https://gum.criteo.com/sid/json?origin=publishertagids&domain=uptodown.com&sn=ChromeSyncframe&so=0&topUrl=github-android.en.uptodown.com
+  GET https://www.google.com/recaptcha/api2/aframe
+  POST https://id5-sync.com/api/config/prebid
+  GET https://match.adsrvr.org/track/rid?ttd_pid=zdsq63q&fmt=json
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791857115444&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=66bcb0c1-2867-4c6c-97a7-0a3
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791857115445&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=66bcb0c1-2867-4c6c-97a7-0a3
+  GET https://g2.gumgum.com/hbid/imp?displaymanager=Prebid.js%20-%20gumgum&displaymanagerver=11.25.0&lt=1791857115445&to=0&aun=%2F78011819%2C1060150%2FUPTODOWN_BACKUP%2FLeaderboard_Download&tdid=66bcb0c1-2867-4c6c-97a7-0a3
+  GET https://securepubads.g.doubleclick.net/gampad/ads?pvsid=8229806905934559&correlator=3981840213881892&eid=122881510%2C95404584%2C122881483&output=ldjh&gdfp_req=1&vrg=202610060101&ptt=17&impl=fifs&iu_parts=78011819%3A1
+  GET https://ssbsync.smartadserver.com/api/sync?callerId=146&gdpr=0&gdpr_consent=
+  POST https://id5-sync.com/g/v2/492.json
+  GET https://securepubads.g.doubleclick.net/pagead/adview?ai=CW-N525HNaqL1LpCnn_wP6O61kAn6j4XmbaCDqMWtDcCNtwEQASDjyKwiYMmG_4fwo-wSyAEJ4AIAqAMByAMCqgTdAk_QMKaQqEBJm6KbaYkCCgdOO52HhlhWuTlx0g0STHo28Y7j1nIGrDdBcvt62QgAkMlFwZ3
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6ac0h2v888089788za200zd888089788xf1&_p=1791857113525&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAGQ&are=1&cid=517404792.1791857114&frm=0&pscdl=noapi&rcb=
+  POST https://analytics.google.com/g/collect?v=2&tid=G-DW5XRK7GYT&gtm=45je6ac0h2v888089788za200zd888089788xf1&_p=1791857113525&gcs=G111&gcd=13v3v3v3v5l1&npa=0&dma=0&gdid=dMmY1Mm&_eu=AEIAAGQ&are=1&cid=517404792.1791857114&
+  GET https://securepubads.g.doubleclick.net/pagead/adview?ai=CW-N525HNaqL1LpCnn_wP6O61kAn6j4XmbaCDqMWtDcCNtwEQASDjyKwiYMmG_4fwo-wSyAEJ4AIAqAMByAMCqgTdAk_QMKaQqEBJm6KbaYkCCgdOO52HhlhWuTlx0g0STHo28Y7j1nIGrDdBcvt62QgAkMlFwZ3
+  GET https://www.temu.com/api/adx/cm/pixel-pubmatic?id=0A19505A-7AB1-43CA-8A45-DF06AA5A75E3&gdpr=0&gdpr_consent=&us_privacy=
+  GET https://www.temu.com/api/adx/cm/pixel-pubmatic?id=0A19505A-7AB1-43CA-8A45-DF06AA5A75E3&gdpr=0&gdpr_consent=&us_privacy=
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-700.woff2
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-regular.woff2
+  GET https://storage.googleapis.com/iadx_storage/assets/fonts/roboto-v30-latin-500.woff2
+  GET https://www.temu.com/api/adx/cm/pixel-opera?adx_uid=1a520feddda1a877&gdpr=0&gdpr_consent=&us_privacy=&redir=https%3A%2F%2Ft.oa.opera.com%2Fsync%3Fvendor%3D60369%26pubid%3Dpub8730968190912%26gdpr%3D0%26consent%3D%26us
+  GET https://pippio.com/api/sync?pid=5324&it=1&iv=385681f31c3478898d890fdc46bc9592ab8abc67c0837c1598f2c5f312c919d8791426b5417dce21&_=2
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?p=medianet
+  GET https://token.rubiconproject.com/khaos.json?
+  GET https://capi.connatix.com/us/pixel?puid=MV61GNFH-11-KVN1&pId=11&gdpr=&gdpr_consent=&us_privacy=
+  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3De12e990b-db26-414f-9d9e-46aa2cd0db5a%26uid%3D%5Bs
+  GET https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=0&gdpr_consent=&redirectUri=https%3A%2F%2Fuse3-sync.a-mo.net%2Fsetuid%3Fbidder%3Dsmartadserver%26A%3Dee95e897-88b4-451f-a94e-c6fb06bcc646%26uid%3D%5Bs
+  GET https://tr.blismedia.com/v1/api/sync/openx
+  GET https://hbx.media.net/cksync.php?bidder=medianet&cs=1&gdpr=0&gdpr_consent=&gpp=%5BGPP%5D&gpp_sid=%5BGPP_SID%5D&ovsid=%7B%7BAPID%7D%7D&redirect=https%3A%2F%2Fcs-server-s2s.yellowblue.io%2Fcs%3Ffwrd%3D1%26aid%3D11585%2
+  GET https://ssbsync.smartadserver.com/api/sync?callerId=77&gdpr=0&gdpr_consent=
+  GET https://www.temu.com/api/adx/cm/pixel-opera?adx_uid=1a520feddda1a877&gdpr=0&gdpr_consent=&us_privacy=&redir=https%3A%2F%2Ft.oa.opera.com%2Fsync%3Fvendor%3D60369%26pubid%3Dpub14207605456320%26gdpr%3D0%26consent%3D%26u
+  GET https://secure-assets.rubiconproject.com/utils/xapi/multi-sync.html?endpoint=us-east&p=rise_engage
+--- all requests after click (unfiltered, last 30):
+  R: GET https://cs.krushmedia.com/d46c1a37ce15a20ee9d2b8259ba90147.gif?puid=MV61GNFH-11-KVN1&redir=&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://cs.krushmedia.com/d46c1a37ce15a20ee9d2b8259ba90147.gif?puid=MV61GNFH-11-KVN1&redir=&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://pixel.rubiconproject.com/exchange/sync.php?p=krushmedia&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://pixel.rubiconproject.com/exchange/sync.php?p=krushmedia&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://cs.krushmedia.com/d46c1a37ce15a20ee9d2b8259ba90147.gif?puid=MV61GNFH-11-KVN1&redir=&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://cs.krushmedia.com/d46c1a37ce15a20ee9d2b8259ba90147.gif?puid=MV61GNFH-11-KVN1&redir=&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]
+  R: GET https://s.ad.smaato.net/c/?dspInit=1132&dspCookie=a8acdaf3-9c8d-53a1-ad59-af41202abddd&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]
+  R: GET https://sync.inmobi.com/setuid?bidderID=82&dspUserId=be2a25852c
+  R: GET https://sync.programmaticx.ai/api/cookie?partnerId=progx-krushmedia&gdpr=$%7BGDPR%7D&gdpr_consent=$%7BGDPR_CONSENT%7D&us_privacy=$%7BCOPPA%7D&userId=77f60b48-c129-5bb4-8fa5-a5d246998040
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://eb2.3lift.com/getuid?redir=https%3A%2F%2Fcs.krushmedia.com%2F7fd23a3f0217f27d6c9750c140876344.gif%3Fpuid%3D%24UID&uid=$UID
+  R: GET https://cs.krushmedia.com/7fd23a3f0217f27d6c9750c140876344.gif?puid=3989273281294970104892
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://sync.smartadserver.com/getuid?url=https%3A%2F%2Fcs.krushmedia.com%2Fb945828a5f7e736ee129bc1270fe22ba.gif%3Fpuid%3D%5Bsas_uid%5D&gdpr_consent=[consent_string]&nwid=4579
+  R: GET https://sync.cootlogix.com/api/cookie?partnerId=shinez-krushmedia&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&us_privacy=[CCPA]&userId=a8acdaf3-9c8d-53a1-ad59-af41202abddd
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://cs.krushmedia.com/b945828a5f7e736ee129bc1270fe22ba.gif?puid=7690611558307437835
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
+  R: GET https://cs.krushmedia.com/c3515c2596ad8b03259d549072aec932.gif?puid=a8acdaf3-9c8d-53a1-ad59-af41202abddd&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&coppa=[COPPA]&gpp=[GPP]&gpp_sid=[GPP_SI
+  R: GET https://visitor-krushmedia_video.omnitagjs.com/visitor/bsync?uid=7d6a83f5259befc8f9c924d7e034011a&name=krushmedia_video&url=yoururlencoded?visitor=PARTNER_USER_ID
+  R: GET https://sync.iqzonertb.live/psync?t=s&e=458&cb=https%3A%2F%2Fcs.krushmedia.com%2F2fb2a77d3ba334963fdb0f775ab62053.gif%3Fpuid%3D%25USER_ID%25%26gdpr%3D%5BGDPR%5D%26gdpr_consent%3D[GDPR_CONSENT]%26c
+  R: GET https://tracker.rtb-stellormedia.com/sync?id=110&uid=3aLlKwV1&redirect=https%3A%2F%2Fsync.iqzonertb.live%2Fpsync%3Ft%3Dd%26e%3D527%26u%3D{PLL_USER_ID}%26clp%3DaHR0cHM6Ly9jcy5rcnVzaG1lZGlhLmNvbS8yZ
+  R: GET https://sync.bfmio.com/syncb?pid=203
+  R: GET https://cs.krushmedia.com/2ba4526eb6337f62742eedc3eec95d96.gif?puid=66bcb0c1-2867-4c6c-97a7-0a34c78154d5&redir=[RED]&gdpr=[GDPR]&gdpr_consent=[GDPR_CONSENT]&ccpa=[CCPA]&coppa=[COPPA]
 === APKPURE BROWSER ===
 cf wait 0: Just a moment...
 cf wait 0: Just a moment...
