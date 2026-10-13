@@ -44,6 +44,22 @@ jobs:
             rm -f github-app-file; return 1
           }
 
+          # ---- Uptodown versions API (revanced trick) ----
+          if [ ! -f github-app-file ]; then
+            dbg "=== uptodown API ==="
+            curl -sL -A "$UA" --max-time 60 "https://github-android.en.uptodown.com/android/apps/779365/versions" -o /tmp/utd.json
+            dbg "json size: $(stat -c%s /tmp/utd.json 2>/dev/null || echo 0) head: $(head -c 200 /tmp/utd.json | tr -d '\n')"
+            vurl=$(grep -oE '"versionURL":"[^"]+"' /tmp/utd.json | head -1 | sed 's/"versionURL":"//;s/"$//' | sed 's#\\/#/#g')
+            dbg "version url: $vurl"
+            if [ -n "$vurl" ]; then
+              curl -sL -A "$UA" -e "https://github-android.en.uptodown.com/android" --max-time 60 "$vurl" -o /tmp/utov.html
+              dbg "version page size: $(stat -c%s /tmp/utov.html 2>/dev/null || echo 0)"
+              u=$(grep -oE 'https://dw\.uptodown\.com[^"]+' /tmp/utov.html | head -1)
+              dbg "dw link: $u"
+              trydl uptodown-api "$u" "$vurl" || true
+            fi
+          fi
+
           # ---- APKPure CDN direct (apkeep trick: official client UA) ----
           if [ ! -f github-app-file ]; then
             dbg "=== d.apkpure.com ==="
